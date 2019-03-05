@@ -185,7 +185,7 @@ false]]></screen>
         A legegyszerűbb megoldás erre a problémára egy segédváltozó használata. Ezt a módszert szemléltetni
         úgy lehet a legkönyebb ha a változókra poharakként, a bennünk tárolt értékekre pedig int viz gondolunk.
         Hogyan tudjuk hát 2 teli pohár tartalmát egyikből a másikba önteni? Természetesen egy harmadik,
-        üres pohár segitségé]]>
+        üres pohár segitségével:
 
         <programlisting language="c">
         <![CDATA[
