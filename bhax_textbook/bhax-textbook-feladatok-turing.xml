@@ -22,17 +22,40 @@
       100%-os mag használatot könnyen elérhetünk bármely egyszerű végtelen ciklussal, melynek végtelenségét
       az adja, hogy a ciklus futási feltételét úgy adjuk meg hogy az mindig igaz legyen. Erre számos megoldás
       létezik, pl: 
-      <programlisting language="c"><![CDATA[
-                int main()
-                {
-                   
-                    while (i<2)
-                    {
-                        
-                    }
-                }
-                ]]>
-      </programlisting>
+      <programlisting language="c">
+      <![CDATA[
+       int main(){
+
+       while(1<2){;}
+
+       return 0;
+       }
+       ]]>
+    </programlisting>
+      <para>
+        Ezzel az egyszerű programmal elérhetjük, hogy a programunk egy magot 100%-ban dolgoztasson meg.
+        De mi van ha mi azt szeretnénk, hogy az összes magot 100%-ban használja ki? Nos, természetesen
+        futtathatjuk a programot annyiszor ahány magunk van, vagy pedig segitségül hivhatjuk az OpenMP
+        könyvtár szolgáltatásait.
+        <programlisting language="c">
+          <![CDATA[
+
+        #include <stdio.h>
+        #include <omp.h>
+
+          int main(){
+
+          #pragma omp parallel
+          for(;;);
+          return 0;
+          }
+          ]]>
+        </programlisting>
+        
+        Ezt a kódot a gcc forditó -fopenmp kiegészitéssel ellátva forditjuk, majd futtatjuk. 
+        Ekkor láthatjuk, hogy az összes magunk (közel) 100%-os terhelésen fut. 
+        
+      </para>
 
     </para>
     <para>
