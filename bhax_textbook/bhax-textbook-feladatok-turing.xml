@@ -218,6 +218,7 @@ false]]></screen>
                 a = a-b; //a=7
             ]]>
         </programlisting>
+      </para>
 
         <para>
           Létezik ugyancsak egy másik megoldás amihez szintén kell matematikai logika viszont már közelebb
@@ -243,7 +244,7 @@ false]]></screen>
 
         </para>
 
-      </para>
+      
     </section>                     
 
     <section>
