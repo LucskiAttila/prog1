@@ -12,13 +12,17 @@
             100 százalékban minden magot!
         </para>
         <para>
-            Megoldás videó:
+            
         </para>
         <para>
-            Megoldás forrása:                
+          <link href="https://github.com/vajkone/prog1/tree/master/batch1/feladat1">Megoldás forrása</link>                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+          Tanulságok, tapasztalatok, magyarázat...
+          100%-os mag használatot könnyen elérhetünk bármely egyszerű végtelen ciklussal, melynek végtelenségét
+          az adja, hogy a ciklus futási feltételét úgy adjuk meg hogy az mindig igaz legyen. Erre számos megoldás
+          létezik, pl: while(1)..., while(true)..., while(1&lt;2)...
+          <img src="../images/vegtelnsima.png"></img>
         </para>            
     </section>        
         
