@@ -51,8 +51,8 @@
         </programlisting>
 
         Ezt a kódot a gcc forditó -fopenmp kiegészitéssel ellátva forditjuk, majd futtatjuk.
-        Ekkor láthatjuk, hogy az összes magunk (közel) 100%-os terhelésen fut.
-        <img src="https://github.com/vajkone/prog1/blob/master/feladatok/batch1/feladat1/vegtelenext.png?raw=true"></img>
+        Ekkor láthatjuk, hogy az összes magunk (közel vagy ténylegesen) 100%-os terhelésen fut.
+        
 
       </para>
         
@@ -149,6 +149,21 @@ false]]></screen>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+
+        Ha a program olyan programot kap bemenetként melyben van végtelen ciklus akkor akkor visszaad
+        egy igaz értéket a T1000es programnak, ami ekkor boldogan leáll és kiirja, hogy igen itt bizony
+        végtelen ciklus van. Ha viszont a vizsgált programban nincs végtelen ciklus akkor ő maga fog
+        végtelen ciklusba kerülni. Ebből már rögtön érzékelhetjük, hogy mi is lesz a gond ha saját magát
+        kell ilyen módon elemeznie.
+      </para>
+      <para>
+        True: megáll, azaz végtelen ciklust talált, de ezekszerint nem áll le, de hogyha meg nem áll le,
+        akkor pedig újabban ismét végtelen ciklust talál, tehát leáll - de ha leáll akkor mégsem végtelen?
+        És igy tovább...
+        Elsőre az embernek kicsit nehéz lehet ezt értelmezni, de a paradoxonokkal gyakran van ez igy.
+        A lényeg, hogy ilyen programot lehetetlen irni.
+      </para>
     </section>        
                 
     <section>
@@ -161,11 +176,74 @@ false]]></screen>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/08/28/10_begin_goto_20_avagy_elindulunk">https://bhaxor.blog.hu/2018/08/28/10_begin_goto_20_avagy_elindulunk</link>
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/feladatok/batch1/swap">https://github.com/vajkone/prog1/tree/master/feladatok/batch1/swap</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+        A legegyszerűbb megoldás erre a problémára egy segédváltozó használata. Ezt a módszert szemléltetni
+        úgy lehet a legkönyebb ha a változókra poharakként, a bennünk tárolt értékekre pedig int viz gondolunk.
+        Hogyan tudjuk hát 2 teli pohár tartalmát egyikből a másikba önteni? Természetesen egy harmadik,
+        üres pohár segitségé]]>
+
+        <programlisting language="c">
+        <![CDATA[
+        int a=10;
+        int b=7;
+        int c;
+        
+        c=a; //c=10
+        a=b; //a=7
+        b=c; //b=10
+            
+        ]]>
+      </programlisting>
+        
+        
+         
+      </para>
+
+      <para>
+        A dolgot természetesen matematikai szempontból is meg lehet közeliteni. Ha összeadjuk a két
+        változót majd a kapott összegből kivonjuk a régi értéküket akkor megkapjuk hogy mi volt a másik
+        változó értéke amit hozzáadtunk, azaz amivel cserélni akarjuk. Ez a gyakorlatban igy néz ki:
+
+        <programlisting language = "c">
+          <![CDATA[
+                int a = 9;
+                int b = 7;
+                a = a+b; //a=18
+                b = a-b; //b=9
+                a = a-b; //a=7
+            ]]>
+        </programlisting>
+
+        <para>
+          Létezik ugyancsak egy másik megoldás amihez szintén kell matematikai logika viszont már közelebb
+          áll az informatika szakterületéhez, ez pedig nem más mint a XOR azaz a kizáró vagy logikai művelet
+          és az ezzel való csere.
+          A számitógép az általunk deklarált voltozók (meg úgy minden szám) értékét 2-es számrendszerrű
+          számként értelmezi és tárolja. Igy például az előző példában használt 7-es és 9-es igy néznének ki:
+          7: 0111, 9: 1001. Most hogy ezt tisztáztuk érthetőbb lesz, ha aztmondjuk hogy a XOR művelet
+          1-est ad vissza mindenhol az vagy az egyik vagy a másik szám bináris értékében 1-es szerepel,
+          de nem mindkettőében. Ez a gyakorlatban igy néz ki:
+
+          <programlisting language = "c">
+            <![CDATA[
+                int a = 7; //binárisan: 0111
+                int b = 9; //binárisan: 1001
+                a = a^b; //a= 0111 ^ 1001 = 1110
+                b = a^b; //b= 1110 ^ 1001 = 0111
+                a = a^b; //a= 1110 ^ 0111 = 1001
+            ]]>
+          </programlisting>
+
+
+
+        </para>
+
+      </para>
     </section>                     
 
     <section>
