@@ -417,6 +417,13 @@ false]]></screen>
         <para>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R</link>
         </para>
+      <para>
+        A Brun tétel és a Brun szám Viggo Brun, norvég fizikus nevéhez kötődik. A tétel azt mondja ki
+        hogy az ikerprimek reciprokösszege egy bizonyos összeghez konvergál, azaz azt tetszőlegesen
+        megközeliti, de el nem éri. Ezt a számot nevezik Brun konstansnak. Egyelőre csak becslések léteznek
+        arról, hogy ez a szám mekkora is, de a szakemberek valahol 1,9 és 2,1754 közé tippelik.
+
+      </para>
     </section>
     
     <section xml:id="bhax-textbook-feladatok-turing.MontyHall">
@@ -433,6 +440,20 @@ false]]></screen>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+        Kezdjük azzal, hogy mi is az a Monty Hall probléma?
+      </para>
+      <para>
+
+        Ön játékos egy televíziós műsorban, és három ajtó közül kell választania.  
+        Az egyik mögött rejlik a főnyeremény, egy autó, a másik kettő mögött pedig nincs semmi.
+        Ön a második ajtót választja. Ekkor a műsorvezető kinyitja a másik két ajtó közül az egyiket, 
+        mondjuk a harmadikat, ami üres. Majd felteszi a kérdést, hogy szeretne-e változtatni és 
+        esetleg  másik ajtót választani?
+      </para>
+      <para>
+        
+      </para>
     </section>
 
 </chapter>                
