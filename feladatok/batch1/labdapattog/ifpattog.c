@@ -15,14 +15,14 @@ main ( void )
     int deltay = 1; //ezzel pedig az y tengelyen
     //mindkét értéket lehet tetszés szerint változtatni 
 
-    int mx; //oszlopok száma
-    int my; //sorok száma
+    int mx; //oszlopok száma (az ablakunk szélessége)
+    int my; //sorok száma (az ablakunk hossza)
 
-    for ( ;; ) {
+    for ( ;; ) { // végtelen ciklus, hogy a labdánk akár az idők végezetéig is pattoghasson
 
-        getmaxyx ( ablak, my , mx );
+        getmaxyx ( ablak, my , mx ); //itt adjuk át az ablakunk szélességét és hosszát paraméterként
 
-        mvprintw ( y, x, "O" );
+        mvprintw ( y, x, "O" ); //ez a függvény jeleniti meg az adott x és y koordinátában a labdánkat
 
         refresh ();
         usleep ( 100000 ); //adott mikroszekundumig altatja, azaz felfüggeszti a program futását
@@ -38,10 +38,10 @@ main ( void )
             deltax = deltax * -1; //akkor induljon ismét jobbra
         }
         if ( y<=0 ) { // elerte-e a tetejet?
-            ynov = ynov * -1; //akkor menjen le
+            deltay = deltay * -1; //akkor menjen le
         }
         if ( y>=my-1 ) { // elerte-e a aljat?
-            ynov = ynov * -1; //akkor mehet fel
+            deltay = deltay * -1; //akkor mehet fel
         }
 
     }
