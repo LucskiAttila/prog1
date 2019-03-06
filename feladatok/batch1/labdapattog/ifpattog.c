@@ -11,11 +11,12 @@ main ( void )
     int x = 0;
     int y = 0;
 
-    int xnov = 1;
-    int ynov = 1;
+    int deltax = 1; //ennyivel lépünk az x tengelyen
+    int deltay = 1; //ezzel pedig az y tengelyen
+    //mindkét értéket lehet tetszés szerint változtatni 
 
-    int mx;
-    int my;
+    int mx; //oszlopok száma
+    int my; //sorok száma
 
     for ( ;; ) {
 
@@ -25,21 +26,22 @@ main ( void )
 
         refresh ();
         usleep ( 100000 );
+        clear() //opcionális, eltünteti az előző labdát, igy az nem huz csikot
 
-        x = x + xnov;
-        y = y + ynov;
+        x = x + deltax;
+        y = y + deltay;
 
         if ( x>=mx-1 ) { // elerte-e a jobb oldalt?
-            xnov = xnov * -1;
+            deltax = deltax * -1; //akkor induljon balra
         }
         if ( x<=0 ) { // elerte-e a bal oldalt?
-            xnov = xnov * -1;
+            deltax = deltax * -1; //akkor induljon ismét jobbra
         }
         if ( y<=0 ) { // elerte-e a tetejet?
-            ynov = ynov * -1;
+            ynov = ynov * -1; //akkor menjen le
         }
         if ( y>=my-1 ) { // elerte-e a aljat?
-            ynov = ynov * -1;
+            ynov = ynov * -1; //akkor mehet fel
         }
 
     }
