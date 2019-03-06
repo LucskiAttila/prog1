@@ -9,7 +9,7 @@ main ( void )
     ablak = initscr ();
 
     int x = 0;
-    int y = 0;
+    int y = 0; //ez a labdánk kiinduló poziciója
 
     int deltax = 1; //ennyivel lépünk az x tengelyen
     int deltay = 1; //ezzel pedig az y tengelyen
@@ -25,7 +25,7 @@ main ( void )
         mvprintw ( y, x, "O" );
 
         refresh ();
-        usleep ( 100000 );
+        usleep ( 100000 ); //adott mikroszekundumig altatja, azaz felfüggeszti a program futását
         clear() //opcionális, eltünteti az előző labdát, igy az nem huz csikot
 
         x = x + deltax;
