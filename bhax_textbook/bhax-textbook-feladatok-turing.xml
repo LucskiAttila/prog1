@@ -251,18 +251,90 @@ false]]></screen>
         <title>Labdapattogás</title>
         <para>
             Először if-ekkel, majd bármiféle logikai utasítás vagy kifejezés
-            nasználata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
+            használata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
             pattogtatás alatt, alább láthatod a videókon.)
         </para>
         <para>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/08/28/labdapattogas">https://bhaxor.blog.hu/2018/08/28/labdapattogas</link>
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/feladatok/batch1/labdapattog">https://github.com/vajkone/prog1/tree/master/feladatok/batch1/labdapattog</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+        A labdapattogás nem több mint a terminálon belüli, valamilyen karakter (ha már labda akkor legyen
+        O ), xy tengelyen való eltolását jelenti. Ha a labda falhoz ér, azaz x vagy y értékünk 0 lesz,
+        akkor pedig visszapattan. De honnan tudja a labda, hogy a terminálunk fala hol is van? Ebben
+        segit nekunk ez a kód részlet:
+        <programlisting language="c">
+          <![CDATA[
+                WINDOW *ablak;
+                ablak = initscr ();
+            ]]>
+        </programlisting>
+
+        A program további részeinek magyarázatát kommentek formájában tettem meg, ezért, hogy ne ismételjem
+        önmagam, ime: 
+        <programlisting language="c">
+          <![CDATA[
+          
+    int x = 0;
+    int y = 0; //ez a labdánk kiinduló poziciója
+
+    int deltax = 1; //ennyivel lépünk az x tengelyen
+    int deltay = 1; //ezzel pedig az y tengelyen
+    //mindkét értéket lehet tetszés szerint változtatni 
+
+    int mx; //oszlopok száma (az ablakunk szélessége)
+    int my; //sorok száma (az ablakunk hossza)
+
+    for ( ;; ) { // végtelen ciklus, hogy a labdánk akár az idők végezetéig is pattoghasson
+
+        getmaxyx ( ablak, my , mx ); //itt adjuk át az ablakunk szélességét és hosszát paraméterként
+
+        mvprintw ( y, x, "O" ); //ez a függvény jeleniti meg az adott x és y koordinátában a labdánkat
+
+        refresh ();
+        usleep ( 100000 ); //adott mikroszekundumig altatja, azaz felfüggeszti a program futását
+        clear() //opcionális, eltünteti az előző labdát, igy az nem huz csikot
+
+        x = x + deltax; \\lépünk x-en
+        y = y + deltay; \\lépünk y-on
+
+        if ( x>=mx-1 ) { // elerte-e a jobb oldalt?
+            deltax = deltax * -1; //akkor induljon balra
+        }
+        if ( x<=0 ) { // elerte-e a bal oldalt?
+            deltax = deltax * -1; //akkor induljon ismét jobbra
+        }
+        if ( y<=0 ) { // elerte-e a tetejet?
+            deltay = deltay * -1; //akkor menjen le
+        }
+        if ( y>=my-1 ) { // elerte-e a aljat?
+            deltay = deltay * -1; //akkor mehet fel
+        }
+
+    }
+
+    return 0;
+}
+          
+          
+          ]]>
+          
+        </programlisting>
+
+
+      </para>
+
+      <para>
+        
+        Az if nélküli megoldáshoz ismét a matematika csodálatos tudományát hivjuk segitségül, mégpedig nem
+        mást mint a maradékos osztást...
+        
+      </para>
     </section>                     
 
     <section>
@@ -275,11 +347,23 @@ false]]></screen>
             Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/feladatok/batch1/szohossz">https://github.com/vajkone/prog1/tree/master/feladatok/batch1/szohossz</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat... 
         </para>
+      <para>
+        
+        Először is: mi is az a szóhossz az informatikai zsargonban? Ez nem más mint a számitógépünk 
+        által, adatok ábrázolása és átvitele közben alkalmazott elemi egység. A BogoMips pedig egy Linus
+        Torvalds által irt program mely a CPU-nk gyorsaságát hivatott mérni. Persze ez nem ér fel egy 
+        CPU stretch test-tel, de diákok számára kiváló versenyt biztosithat, hogy kinek fut le gyorsabban.
+        A BogoMips-ből átemeljük a while ciklust, melyben a másodpercenkénti loop-ot egy másik változóval
+        helyettesitjuk. Ez a változó fogja mérni a bitek számát. A tényleges szóhosszt bitshifteléssel
+        fogjuk kideriteni. Addig lépkedünk balra, amig csupa nullába nem botlunk, eközben a lépseinket
+        számolja a már korábban emlitett változónk, amit a while ciklusból kilépve kiirunk és megkapjuk
+        hogy hány bites a szóhossz a gépünkben. 
+      </para>
     </section>                     
 
     <section>
@@ -292,11 +376,34 @@ false]]></screen>
             Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/feladatok/batch1/pagerank">https://github.com/vajkone/prog1/tree/master/feladatok/batch1/pagerank</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+        A Google keresője mára vitathatatlanul a legnépszerűbb kereső motorrá nőtte ki magát. De minek 
+        köszönheti népszerűségét? Néha az az érzésünk támadhat, hogy a Google kereső jobban tudja, hogy mit 
+        is akarunk mint mi magunk. (Néha mikor még a fejemben se állt össze, hogy mire is szeretnék
+        rákeresni, a google már ki is hozta mint első javaslat. Hát már ilyen szintent megfigyelnek minket?!)
+        Hogyan lett hát a google keresője ilyen kifinomult? Nos, a kereső algoritmus egyik, ha nem a
+        legonfontosabb része / funkciója a PageRank rendszer. Ez az az algoritmus mely eldönteni, hogy egyes
+        lapok mennyire elől szerepeljenek a találatok közötti listában. Személy szerint nem emlékszem, 
+        hogy a közelmúltban bármikor is a találatok 2. oldalára kellett volna kattintanom, hogy megtaláljam
+        amit keresek, szóval úgy vélem nagy biztonsággal kijelenthetjük, hogy a google PageRank algoritmusa
+        jól végzi a dolgát. De hogyan is teszi mindezt?
+        
+      </para>
+      <para>
+        
+        A PageRank bizonyos pontrendszerrel dolgozik. Ezeket a pontokat részben azért kaphatja egy oldal,
+        hogyha más oldalakról rá mutatnak (linkek). Logikus, hiszen jobb minőségű oldalakra nyilván több
+        link fog mutatni, mint egy gagyi oldalra. Ezek a linkek ún. szavazatoknak számitanak és nem egyenlő
+        erősségűek. Magasabb pontszamú oldalak szavazatai értéksebbek, mint gyengébb pontszámú társaiké.
+        Egy oldal "szavazó-ereje" annál gyengébb minél több külső helyre mutat. Ez részben azt eredményezi, hogy
+        az oldalak tényleg csak olyan oldalra fognak mutatni, akit arra érdemesnek tartanak.
+        
+      </para>
     </section>
 
     <section xml:id="Brun">
