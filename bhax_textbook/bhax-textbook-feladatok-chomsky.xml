@@ -14,11 +14,18 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/blob/master/chomsky/turinggep.c">https://github.com/vajkone/prog1/blob/master/chomsky/turinggep.c</link>               
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+        <para>
+            Nagyon részletesen az unáris számrendszert és a Turing gépet tárgyalni nem igazán lehet, ezért
+            röviden: Az unáris (egyes) számrendszerben az N decimális számot N darab 1-essel vagy szimpla egyenes
+            vonással (|) lehet ábrázolni. A Turing gép ezt úgy teszi meg, hogy az átváltandó számot beolvassa
+            és addig vonogat ki belőle 1-et, amig az eredeti szám értéke 0 nem lesz. A kivont egyeseket
+            pedig sorban a kimenetre (vagy tárolóba) irja. 
+        </para> 
     </section>        
         
     <section>
@@ -50,9 +57,23 @@
         <para>
             Megoldás forrása:  
         </para>
+     
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>
+     <para>
+        <programlisting language="c">
+          <![CDATA[
+          
+          
+           ]]>
+          
+        </programlisting>
+          
+      </para>
     </section>                     
 
     <section>
@@ -66,11 +87,67 @@
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/blob/master/chomsky/szamokszama.l">https://github.com/vajkone/prog1/blob/master/chomsky/szamokszama.l</link> 
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+            A lexer program segitségével könnyedén tudunk olyan input elemző programot késziteni, amely 
+            megszámolja az inputban található számokat. A lexer egy szövegfjlból beolvassa a lexikális szabályokat,
+            majd kimenetként C nyelvű kódot állit elő. 
+             <programlisting language="c">
+          <![CDATA[
+          %{
+	          #include <string.h>
+	          int szamok_szama = 0;
+          %}
+          %%
+           ]]>
+          
+        </programlisting>
+          
+          
+      </para>
+    <para>
+      A kódon belül az egyes részeket %% (dupla százalék jel) választja el egymástól. Ebben a kódrészletben
+      C nyelven inicializálunk egy változót ami majd a számokat számolja és tárolja és include-oljuk a 
+      string.h header file-t. 
+     
+    </para>
+    <para>
+         <programlisting language="c">
+          <![CDATA[
+        [0-9]+		++szamok_szama;
+        [a-zA-Z][a-zA-Z0-9]*	;                          
+			
+        %%
+           ]]>
+          
+        </programlisting>
+    
+    Ezt követi a lexer rész, ahol a lexikális szabályokat adjuk meg, jelen esetben, hogy növelje a
+    szamok_szamat ha a bemenet szám, és hagyja figyelmen kivül ha a bemenet bármilyen betű, de még
+    akkor is ha a betű vagy betűk sorozata után áll egy szám, azaz csak akkor számol ha a bemenet számmal
+    kezdődik. 
+    
+    </para>
+       <para>
+         <programlisting language="c">
+          <![CDATA[
+        int main()
+        {
+          yylex();
+          printf("%d szam\n", szamok_szama);
+          return 0;
+        }
+           ]]>
+          
+        </programlisting>
+    
+    Végül, ismét C nyelven, meghivjuk a main függvényt, amin belül pedig a yylex() függvényt is, ami a lexikális elemzőnk.
+    
+    </para>
     </section>                     
 
     <section>
