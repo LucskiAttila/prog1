@@ -52,11 +52,7 @@
         Bb -> bb
         
         Levezetés:
-        S -> aBSc -> aBaBScc -> aBaBabccc -> aaBBabccc -> aaBaBbccc -> aaaBBbccc -> ←-
-        aaaBbbccc -> aaabbbccc
-        
-
-	  
+        S -> aBSc -> aBaBScc -> aBaBabccc -> aaBBabccc -> aaBaBbccc -> aaaBBbccc -> aaaBbbccc -> aaabbbccc
            ]]>
 
         </programlisting>
@@ -78,7 +74,7 @@
       aY -> aa
       
       Levezetés:
-      S -> aXbc -> abXc -> abYbcc -> aYbbcc -> aaXbbcc -> aabXbcc -> aabbXcc -> ←-
+      S -> aXbc -> abXc -> abYbcc -> aYbbcc -> aaXbbcc -> aabXbcc -> aabbXcc ->
       aabbYbccc -> aabYbbccc -> aaYbbbccc -> aaabbbccc    
 	  
            ]]>
