@@ -372,14 +372,22 @@
         <para>
             Hogyan olvasod természetes nyelven az alábbi Ar nyelvű formulákat?
         </para>
-        <programlisting language="tex"><![CDATA[$(\forall x \exists y ((x<y)\wedge(y \text{ prím})))$ 
+        <programlisting language="tex"><![CDATA[$(\forall x \exists y ((x<y)\wedge(y \text{ prím})))$]]></programlisting>
+      <para>Minden x-hez létezik olyan y, hogy x kisebb, mint y, és y prím. Azaz: ˝
+    Minden számnál létezik nagyobb primszám. Magyarul: a primszámok száma végtelen. </para>
+         
 
-$(\forall x \exists y ((x<y)\wedge(y \text{ prím})\wedge(SSy \text{ prím})))$ 
-
-$(\exists y \forall x (x \text{ prím}) \supset (x<y)) $ 
-
-$(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
-]]></programlisting>        
+<programlisting language="tex"><![CDATA[$(\forall x \exists y ((x<y)\wedge(y \text{ prím})\wedge(SSy \text{ prím})))$ ]]></programlisting>
+      <para>Minden x-hez létezik olyan y, hogy x kisebb, mint y, y prim és y
+rákövetkezőjének rákövetkezője is prím. Azaz: Minden számnál léteznek nagyobb ikerprimek, magyarul: az ikerprimek száma végtelen</para>
+<programlisting language="tex"><![CDATA[$(\exists y \forall x (x \text{ prím}) \supset (x<y)) $ ]]></programlisting>
+      <para> Létezik olyan y, hogy minden x-re igaz, hogy ha x prim, akkor x
+kisebb, mint y. Számomra ez kétértelmű, egyszer jelentheti azt hogy létezik, egy bizonyos y amitől nincs
+nagyobb x prim, azaz a primek száma végtelen, vagy pedig hogy minden x prim-hez létezik egy y ami nagyobb
+tőle, ami csak annyit jelent, hogy a természetes és primszámok száma is végtelen.</para>
+<programlisting language="tex"><![CDATA[$(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$]]></programlisting>
+<para>Létezik olyan y hogy minden x-re igaz, hogy ha y kisebb mint x akkor nem primszám. Őszintén:
+ezt még el kell olvasnom párszor hogy megértsem</para>      
         <para>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/MatLog_LaTeX">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/MatLog_LaTeX</link>
         </para>
@@ -388,9 +396,10 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Megoldás videó: <link xlink:href="https://youtu.be/ZexiPy3ZxsA">https://youtu.be/ZexiPy3ZxsA</link>, <link xlink:href="https://youtu.be/AJSXOQFF_wk">https://youtu.be/AJSXOQFF_wk</link>
         </para>
 
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
+      
+      <para>
+    
+      </para>
     </section>                                                                                                                                                                            
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     <section>
@@ -463,10 +472,10 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
                 <programlisting><![CDATA[int *(*l) (); //mutató amely egészre mutató függvényre mutató mutatóra mutat]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int (*v (int c)) (int a, int b); //függvény ami ]]></programlisting>            
+                <programlisting><![CDATA[int (*v (int c)) (int a, int b); //egészet visszaadó és két egészet kapó függvényre mutató mutatót visszaadó, egészet kapó függvény]]></programlisting>            
             </listitem>            
             <listitem>
-                <programlisting><![CDATA[int (*(*z) (int)) (int, int);]]></programlisting>            
+                <programlisting><![CDATA[int (*(*z) (int)) (int, int); //függvénymutató egy egészet visszaadó és két egészet kapó függvényre mutató mutatót visszaadó, egészet kapó függvényre]]></programlisting>            
             </listitem>            
         </itemizedlist>       
 
@@ -475,10 +484,10 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link xlink:href="https://github.com/vajkone/prog1/blob/master/chomsky/bevezet.c">https://github.com/vajkone/prog1/blob/master/chomsky/bevezet.c</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            
         </para>
     </section>                     
 
