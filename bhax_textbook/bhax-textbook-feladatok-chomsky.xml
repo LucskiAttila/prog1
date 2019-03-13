@@ -320,61 +320,57 @@
             </listitem>
           
             <listitem>                                    
-
                 <programlisting><![CDATA[for(i=0; i<5; i++)]]></programlisting>            
             </listitem>
          
             <listitem>                                    
-
                 <programlisting><![CDATA[for(i=0; i<5; tomb[i] = i++)]]></programlisting>            
             </listitem>
           
             <listitem>                                    
-
                 <programlisting><![CDATA[for(i=0; i<n && (*d++ = *s++); ++i)]]></programlisting>            
             </listitem>
 
-          <para> </para>
             <listitem>                                    
-
                 <programlisting><![CDATA[printf("%d %d", f(a, ++a), f(++a, a));]]></programlisting>            
             </listitem>
+          
             <listitem>                                    
-
                 <programlisting><![CDATA[printf("%d %d", f(a), a);]]></programlisting>            
             </listitem>
+          
             <listitem>                                    
-
                 <programlisting><![CDATA[printf("%d %d", f(&a), a);]]></programlisting>            
             </listitem>
         </orderedlist>
 
-      <para>
+      
         <programlisting>
           <![CDATA[if(signal(SIGINT, SIG_IGN)!=SIG_IGN)
     signal(SIGINT, jelkezelo);]]>
         </programlisting>
-       
+      <para>
         Amennyiben a SIGINT nem kerül ignorálásra (SIG_IGN) akkor a jelkezelő kezelje a signalt
         
       </para>
 
-      <para>
             <programlisting>
               <![CDATA[for(i=0; i<5; i++)
                        for(i=0; i<5; ++i]]>
-            </programlisting>            
+            </programlisting>
+      <para>
 
-          Két for ciklus amelyek 5-ször futnak le, különbség köztük csak annyi, hogy az
-          elsőben előbb nőveljük az i-t és csak azután használnánk azt (magát az értéket), de mivel
+        Két for ciklus amelyek 5-ször futnak le, különbség köztük csak annyi, hogy az
+        elsőben előbb nőveljük az i-t és csak azután használnánk azt (magát az értéket), de mivel
         itt ilyenre nem kerül sor, ezért igazából jelentéktelen az eltérés.
-        
+
       </para>
 
-      <para>
+     
         
-        <programlisting><![CDATA[for(i=0; i<5; tomb[i] = i++)]]></programlisting>            
-            
+        <programlisting><![CDATA[for(i=0; i<5; tomb[i] = i++)]]></programlisting>
+      
+      <para>     
           Feltételezzük hogy az i változó már korábban deklarálva lett, ekkor ez a ciklus 5-ször fug lefutni és a tomb nevű tömb első  ötelemét fogja 0 1 2 3 4-re állitani.
           Gond csak akkor van ha a tömb nagysága kisebb mint 5.
         
