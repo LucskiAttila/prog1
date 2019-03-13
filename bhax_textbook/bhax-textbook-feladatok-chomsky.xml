@@ -37,11 +37,63 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Tutorom a megoldásban: Petrus Tamás József                
         </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
+        
+      <para>
+        <programlisting language="c">
+          <![CDATA[
+
+
+		    Szabályok:
+        S -> aBSc
+        S -> abc
+        Ba -> aB
+        Bb -> bb
+        
+        Levezetés:
+        S -> aBSc -> aBaBScc -> aBaBabccc -> aaBBabccc -> aaBaBbccc -> aaaBBbccc -> ←-
+        aaaBbbccc -> aaabbbccc
+        
+
+	  
+           ]]>
+
+        </programlisting>
+
+       
+      </para>
+
+      <para>
+
+        <programlisting language="c">
+          <![CDATA[
+      Szabályok:
+      S -> abc
+      S -> aXbc
+      Xb -> bX
+      Xc -> Ybcc
+      bY -> Yb
+      aY -> aaX
+      aY -> aa
+      
+      Levezetés:
+      S -> aXbc -> abXc -> abYbcc -> aYbbcc -> aaXbbcc -> aabXbcc -> aabbXcc -> ←-
+      aabbYbccc -> aabYbbccc -> aaYbbbccc -> aaabbbccc    
+	  
+           ]]>
+
+        </programlisting>
+      </para>
+
+      <para>
+        A generálás során a meghatározott szabályok alapján a vizsgálandó szót lecseréljük a megadott részszóra,
+        majd a kapott részszóból a szabályok alapján újabbat generálunk, ezt addig folytatjuk mig a nyil jobb
+        oldalán csupa terminális változók nem állnak. 
+        
+
+
+      </para>
     </section>        
                 
     <section>
@@ -53,16 +105,19 @@
         </para>
         
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link xlink:href="https://github.com/vajkone/prog1/blob/master/chomsky/statements.txt">https://github.com/vajkone/prog1/blob/master/chomsky/statements.txt</link>
         </para>
      
         <para>
             
+          A Backus-Naur-Form egyfajta metaszintaxis melynek segitségével különböző nyelveket, azok
+          nyalvtanát irhatjuk le. Nevét John Backusról és Peter Naurról kapta. A módszert magát Backus 
+          hozta létre és Peter Naur egyszerűsitette le. Eredetileg az ALGOL nyelv szintaxisánák leirására
+          szolgált, de azóta a legtöbb programozási nyelv szintaxisának leirására ezt a módszert használják.
+          
+          
         </para>
-      <para>
-            Az alábbi kódcsipet például gcc -std=c89 forditással nem fordul le, mert a for cikluson belül deklaráltuk az i változót. A konzolra kapunk 
-is egy hiba üzenetet, hogy ezt csak C99 vagy C11 módban tehetjük meg. 
-        </para>
+
      <para>
         <programlisting language="c">
           <![CDATA[
@@ -74,6 +129,10 @@ is egy hiba üzenetet, hogy ezt csak C99 vagy C11 módban tehetjük meg.
           
         </programlisting>
           
+      </para>
+      <para>
+        Az alábbi kódcsipet például gcc -std=c89 forditással nem fordul le, mert a for cikluson belül deklaráltuk az i változót. A konzolra kapunk
+        is egy hiba üzenetet, hogy ezt csak C99 vagy C11 módban tehetjük meg.
       </para>
     </section>                     
 
@@ -146,7 +205,8 @@ is egy hiba üzenetet, hogy ezt csak C99 vagy C11 módban tehetjük meg.
           
         </programlisting>
     
-    Végül, ismét C nyelven, meghivjuk a main függvényt, amin belül pedig a yylex() függvényt is, ami a lexikális elemzőnk.
+    Végül, ismét C nyelven, meghivjuk a main függvényt, amin belül pedig a yylex() függvényt is, ami a lexikális elemzőnk, amely
+    értelmezi az előző blokkban definiált szabályokat. 
     
     </para>
     </section>                     
@@ -160,11 +220,83 @@ is egy hiba üzenetet, hogy ezt csak C99 vagy C11 módban tehetjük meg.
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link xlink:href="https://github.com/vajkone/prog1/blob/master/chomsky/leet.l">https://github.com/vajkone/prog1/blob/master/chomsky/leet.l</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
+      <para>
+        Ahogy azt az előző lexeres programnál is láttuk a kód itt is 3 részre oszlik. Előre kerülnek a 
+        header file-ok és egyéb definiciók, 2. blokkban jönnek a szabályok. Végül pedig a harmadik 
+        blokkban parse-oljuk yylex()-el a szabályokat. 
+      </para>
+
+      <para>
+        <programlisting language="c">
+          <![CDATA[
+        struct cipher {
+        char c;
+        char *pool[3];
+  } l337d1c7 [] = {
+
+  {'a', {"/\\", "Д", "@"}},
+  {'b', {"8", "|3", "ß"}},
+  {'c', {"(", "<", "©"}},
+  .
+  .
+  .
+           ]]>
+
+        </programlisting>
+        
+      </para>
+      <para>
+        Készitünk egy cipher struktúrát mely tartalmaz egy karaktert, ami majd az egyes betűket fogja tartalmazni
+        és egy 3 méretű tömböt azoknak a karaktereknek amikre majd lecseréljük az betűket. Ezután végigmegyünk
+        az abc betűin és megadunk minden betűhoz három leet alternativát, ezzel létrehozva egy könyvtárat.
+      </para>
+      <para>
+
+        <programlisting language="c">
+          <![CDATA[
+            
+            int found = 0;
+	  for(int i=0; i<L337SIZE; ++i)
+	  {
+	  
+	    if(l337d1c7[i].c == tolower(*yytext))
+	    {
+	    
+	      int r = 1+(int) (100.0*rand()/(RAND_MAX+1.0));
+	    
+          	if(r<34)
+	        printf("%s", l337d1c7[i].pool[0]);
+          	else if(r<67)
+	        printf("%s", l337d1c7[i].pool[1]);
+	      	else
+	        printf("%s", l337d1c7[i].pool[2]);
+	      	
+
+	      found = 1;
+	      break;
+	   	 }
+		}
+		if(!found)
+		printf("%c", *yytext);
+           ]]>
+
+        </programlisting>
+        
+      </para>
+      <para>
+        A második blokkban jöhetnek a szabályok, kezdve egy for ciklussal ami végigmegy a leetsize-on, 
+        amit korábban definiáltunk (a leet könyvtárunk mérete osztva egy darab cipher tétel méretével).
+        Majd azután egy random szám generátor segitségével döntjük el, hogy a három megadott leet alternativából
+        melyiket is válassza, mindegyikre nagyjából 33% esély van. Ha pedig olyan karakterrel találkozik
+        amit nem adtunk meg a könyvtárunkban akkor szimplán visszaadja az adott karaktert.
+        
+      </para>
+      
     </section>                     
 
 
@@ -307,31 +439,31 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
 
         <itemizedlist>
             <listitem>
-                <programlisting><![CDATA[int a;]]></programlisting>            
+                <programlisting><![CDATA[int a; //egész tipusú változó]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int *b = &a;]]></programlisting>            
+                <programlisting><![CDATA[int *b = &a; //egész változóra mutató mutató]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int &r = a;]]></programlisting>            
+                <programlisting><![CDATA[int &r = a; //egész változó refernciája]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int c[5];]]></programlisting>            
+                <programlisting><![CDATA[int c[5]; //5 méretű tömb egészek számára]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int (&tr)[5] = c;]]></programlisting>            
+                <programlisting><![CDATA[int (&tr)[5] = c; //egészek tömbjének referenciája]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int *d[5];]]></programlisting>            
+                <programlisting><![CDATA[int *d[5]; //egészre mutató mutatók tömbje]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int *h ();]]></programlisting>            
+                <programlisting><![CDATA[int *h (); //függvény ami egészekre mutató mutatót ad vissza]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int *(*l) ();]]></programlisting>            
+                <programlisting><![CDATA[int *(*l) (); //mutató amely egészre mutató függvényre mutató mutatóra mutat]]></programlisting>            
             </listitem>
             <listitem>
-                <programlisting><![CDATA[int (*v (int c)) (int a, int b)]]></programlisting>            
+                <programlisting><![CDATA[int (*v (int c)) (int a, int b); //függvény ami ]]></programlisting>            
             </listitem>            
             <listitem>
                 <programlisting><![CDATA[int (*(*z) (int)) (int, int);]]></programlisting>            
