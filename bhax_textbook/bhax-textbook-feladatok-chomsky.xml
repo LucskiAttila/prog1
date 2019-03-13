@@ -74,8 +74,7 @@
       aY -> aa
       
       Levezetés:
-      S -> aXbc -> abXc -> abYbcc -> aYbbcc -> aaXbbcc -> aabXbcc -> aabbXcc ->
-      aabbYbccc -> aabYbbccc -> aaYbbbccc -> aaabbbccc    
+      S -> aXbc -> abXc -> abYbcc -> aYbbcc -> aaXbbcc -> aabXbcc -> aabbXcc -> aabbYbccc -> aabYbbccc -> aaYbbbccc -> aaabbbccc    
 	  
            ]]>
 
@@ -127,7 +126,7 @@
           
       </para>
       <para>
-        Az alábbi kódcsipet például gcc -std=c89 forditással nem fordul le, mert a for cikluson belül deklaráltuk az i változót. A konzolra kapunk
+        Az fenti kódcsipet például gcc -std=c89 forditással nem fordul le, mert a for cikluson belül deklaráltuk az i változót. A konzolra kapunk
         is egy hiba üzenetet, hogy ezt csak C99 vagy C11 módban tehetjük meg.
       </para>
     </section>                     
@@ -242,7 +241,7 @@
         
       </para>
       <para>
-        Készitünk egy cipher struktúrát mely tartalmaz egy karaktert, ami majd az egyes betűket fogja tartalmazni
+        Készitünk egy cipher struktúrát mely tartalmaz egy karaktert, ami majd az egyes betűket fogja reprezentálni
         és egy 3 méretű tömböt azoknak a karaktereknek amikre majd lecseréljük az betűket. Ezután végigmegyünk
         az abc betűin és megadunk minden betűhoz három leet alternativát, ezzel létrehozva egy könyvtárat.
       </para>
