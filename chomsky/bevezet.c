@@ -42,7 +42,7 @@ int *(*l)();
 int (*v(int c))(int a, int b);
 
 //függvénymutató egy egészet visszaadó és két egészet kapó függvényre mutató mutatót visszaadó, egészet kapó függvényre
-int (*(*z)(int)) (int, int)
+int (*(*z)(int)) (int, int);
 
 
 
