@@ -587,15 +587,90 @@
             C++
         </para>
         <para>
-            Megoldás videó:
+            Megoldás videó:<link xlink:href="https://www.youtube.com/watch?v=XpBnR31BRJY">https://www.youtube.com/watch?v=XpBnR31BRJY</link>
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:<link xlink:href="https://github.com/nbatfai/nahshon/blob/master/ql.hpp#L64">https://github.com/nbatfai/nahshon/blob/master/ql.hpp#L64</link>                
+        </para>
+      <para>
+        Tanulságok, tapasztalatok, magyarázat...
+      </para>
+      <para>
+        A gépi tanulás területén, a perceptron egy olyan algoritmus melyet a bináris osztályozás területén használnak.
+        A perceptron éppen úgy működik mint a neurális hálózatok, ahhoz hogy működjön, előbb
+        be kell tanitani, meg kell neki mondani, hogy bizonyos dolgokat miről ismer fel és hogy a jövőben
+        ezeket mi alapján osztályozza. A perceptronnak 4 fő része van, ezek:
+      </para>
+        <para>
+          1: input értékek
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+          2: súlyozás
+        </para>
+        <para>
+          3: össz súly
+        </para>
+        <para>
+          4: osztályozás funkció
+        </para>
+      <para>
+        Először is az inputokat meg kell szorozni a saját súlyukkal, ezután ezeket az értékekek összeadjuk amiből megkapjuk a
+        súlyozott összeget, majd ezt az összeget betápláljuk a megfelelő funkcióba, ami ezután az inputokat osztályozza. Mint korábban
+        emlitésre került, bináris osztályozásnál a funkciónak csak 2 osztály közül kell választania. Pl.: 0 és 1, sötét-világos, kutya-macska stb...
+        
+      </para>
+                    
+    </section>
+  <section>
+
+    <title> Gutenberg olvasónaplók</title>
+    <para>
+      
+      
+    </para>
+    <title>
+      Juhász István
+      MAGAS SZINTŐ PROGRAMOZÁSI NYELVEK 1
+    </title>
+    <para>
+      A számitógépek megjelenése lehetőve tette az emberi gondolkodás bizonyos elemeinek automatizálását.
+      Ehhez viszont az embernek szüksége volt arra hogy a számitógépet programozni tudja. Ennek a kivitelézésre
+      kailakult nyelveknek 3 szintjét különböztetjük meg. Az első a gépi nyelv ami valójában 0-k és 1-esek sorozata, azaz bináris kód.
+      E fölött áll az assembly nyelv, ami félúton van gépi nyelv és emberi nyelv között. Ami pedig már "emberi fogyasztásra alkalmas"
+      minősül, az pedig a magas szintű programozási nyelv azaz nyelvek merthogy mára már rengeteg van belőlük, viszont ez a könyv
+      a korábbiak közül fog néhányra koncentrálni, azokon belűl is leginkább az ADA és C nyelveken lesz a fókusz.
+      Az ezeken a nyelveken iródott programokat forrásprogramnak vagy forrásszövegnek nevezzük (angolul source-code), melyekre
+      vonatkoznak bizonyos nyelvtani és formai szabályok - ezeket szintaktikai szabályoknak nevezzük. Egy nyelvre vonatkoznak ugyanakkor
+      szemantikai szabályok is, ezek az értelmezési, tartalmi és jelentésbéli szabályok.
+    </para>
+    <title>
+      Kernigen and Ritchie: A C programozási nyelv
+    </title>
+    <para>
+      A könyv azzal a céllal iródott, hogy az olvasó a lehető leggyorsabban eljusson arra a pontra, 
+      ahol már önállóan működő és használható programokat tud irni. A könyv irói feltételezik, hogy 
+      az olvasó nem teljesen nulláról indul, volt már dolga számitógépekkel esetleg programozással is
+      próbálkozott. Ez persze nem jelenti azt, hogy bármely fontos részt átugranának, csak szimplán a 
+      szakzsargont nem részletezik. 
+    </para>
+    <para>
+      A bevezető alapvető fogalmakra és tudnivalókra koncentrál: Változók
+      és állandók, a C nyelv aritmetikája, input és output alapvető kezelése és az ezekhez kapcsolódó ismeretek,
+      függvények, vezérlésátadás. A bevezetőbe nem kerültek bele a mutatók, struktúrák, a nyelv operátorkészletének
+      java és valamennyi vezérlésátadó utasitás sem. Ezek tudatosan kerültek későbbi fejezetekbe, ugyanis
+      ezek majd nagyobb és összetettebb programok irásánál lesznek elengedhetetlenek. Ez a megközelités
+      természetsen jár néhány hátránnyal is, nevezetesen, hogy a a nyelv összetevőinek bemutatása valamelyest
+      szétszórtan lesz megtalálható a könyvben és nem tudunk majd szükség esetén egy bizonyos fejezetre
+      visszalapozni, ahol minden egyben van. 
+    </para>
+    <title>
+      Benedek Zoltán - Levendovszky Tihamér: Szoftverfejlesztés C++ nyelven
+    </title>
+    <para>
+
+    </para>
+    
+  </section>
         
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                
