@@ -228,11 +228,75 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/blob/master/caesar/exortitkosito.java">https://github.com/vajkone/prog1/blob/master/caesar/exortitkosito.java </link>             
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+        </para>
+      <para>
+        <programlisting language = "java">
+          <![CDATA[
+        import java.io.FileInputStream;
+        import java.io.FileOutputStream;
+        import java.io.IOException;
+        import java.util.ArrayList;
+        import java.util.Scanner;
+
+        public class Main { 
+          
+        
+          public static void main(String[] args) throws IOException {
+          FileInputStream fin;
+          FileOutputStream fout;
+
+          fin=new FileInputStream("tiszta.txt");
+          int c;
+          ArrayList<Integer> input = new ArrayList<Integer>();
+          ArrayList<Integer> output = new ArrayList<Integer>();
+          Scanner in = new Scanner(System.in);
+          System.out.println("Adja meg a kulcsot: ");
+          String kulcs = in.nextLine();
+          int kulcs_hossz = kulcs.length();
+
+          while((c=fin.read())!=-1)
+          {
+              input.add(c);
+          }
+          fout = new FileOutputStream("titkos.txt");
+          for(int i=0;i<input.size();i++)
+          {
+              output.add(input.get(i)^kulcs.charAt(i%kulcs_hossz));
+              fout.write(output.get(i));
+          }
+
+          for(int i=0;i<output.size();i++)
+          {
+              System.out.printf("%c",output.get(i));
+          }
+
+          fin.close();
+          fout.close();
+
+        }
+          
+ 
+   
+            ]]>
+        </programlisting>
+      </para>
+        <para>
+            Mivel a Java is C alapú nyelv ezért a program logikai felépitése szinte megegyezik az előzőjével. Érdemi változtatás
+            ott történik részemről, hogy a titkositandó szöveget és kulcsot a main függvényünk most nem 
+            parancssori argumentumként kapja meg (ennél a feladatnál windowsban dolgoztam és igy egyszerűbbnek éreztem)
+            , hanem a kódba ágyazva adjuk át neki a tiszta szöveget (vagyis az elérési útját) 
+            és a user a programot futtatva kap egy promptot ahol megadhatja a kulcsot. Ezután ugyancsak a 
+            kódba ágyazva megadjuk az output file nevét és elérési útját (ha csak a nevét adjuk az is elég,
+            ekkor a programunk src mappájába kerül automatikusan) és egy for loopban bájtonként beleirjuk a 
+            titkositott szöveget. Ezek után még fontos, hogy lezárjuk az input és output streameket (amikkel
+            file-okból olvastunk és file-okba irunk) különben előfordulhat, hogy például az output txt-nk
+            üresen marad a program futása után. 
+            
+        </para> 
     </section>        
     <section>
         <title>C EXOR törő</title>
@@ -243,11 +307,183 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/blob/master/caesar/exortoro.c">https://github.com/vajkone/prog1/blob/master/caesar/exortoro.c</link>               
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+        </para>
+      <para>
+        Próbáljuk hát meg feltörni, a korábban elkészitett titkos szövegünket. Feltörés alatt a kulcs-ként
+        megadott szó megfejtését kell érteni.
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+
+          #define MAX_TITKOS 4096
+          #define OLVASAS_BUFFER 256
+          #define KULCS_MERET 8
+          
+
+          #include <stdio.h>
+          #include <unistd.h>
+          #include <string.h>
+ 
+   
+            ]]>
+        </programlisting>
+        
+        Konstansok definiálása és könytárak hozzáadása a programunkhoz. Felmerülhet a kérdés hogy a 
+        KULCS_MERET-et miért végelegsitjük 8-asnak? Nos igen, ez azt fogja feltételezni, hogy a titkositásnál
+        8 karakternyi hosszú stringet adtunk meg kulcsként. Szóval a titkositónak muszáj kicsit segitenie
+        minket azzal, hogy a "mi szabályaink" szerint játszik, ha azt szeretné, hogy a kódját feltörjük.
+        
+        
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+
+        double atlagos_szohossz (const char *titkos, int titkos_meret)
+        {
+        int sz = 0;
+        for (int i = 0; i < titkos_meret; ++i)
+          if (titkos[i] == ' ')
+          ++sz;
+
+        return (double) titkos_meret / sz;
+        }
+ 
+   
+            ]]>
+        </programlisting>
+        Ahogy neve is mutatja ez a függvény a titkositott bemenet szavainak átlagos hosszát fogja számolni.
+        Ezt úgy teszi, hogy végigmegy a bemeneten és ha szóközhösz ér akkor, a szavak számlálására használt
+        változót növeli eggyel. Végül az argumentumként átadott titkositott szöveg méretét elosztja a szavak
+        számával. 
+
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+
+      int tiszta_lehet (const char *titkos, int titkos_meret)
+      {
+
+        double szohossz = atlagos_szohossz (titkos, titkos_meret);
+
+        return szohossz > 6.0 && szohossz < 9.0
+          && strcasestr (titkos, "hogy") && strcasestr (titkos, "nem")
+          && strcasestr (titkos, "az") && strcasestr (titkos, "ha");
+
+      }
+ 
+   
+            ]]>
+        </programlisting>
+        Ez a függvény azt vizsgálja, hogy a dekódolt szöveg megfelel-e az alábbi követelményeknek:
+        Az átlagos szóhossz 6 és 9 között van, valamint tartalmazza-e a "hogy" "nem" "az" "ha" szavakat.
+
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+          
+            void exor (const char kulcs[], int kulcs_meret, char titkos[], int titkos_meret)
+            {
+
+              int kulcs_index = 0;
+
+              for (int i = 0; i < titkos_meret; ++i)
+                {
+
+                  titkos[i] = titkos[i] ^ kulcs[kulcs_index];
+                  kulcs_index = (kulcs_index + 1) % kulcs_meret;
+
+                }
+
+            }
+   
+            ]]>
+        </programlisting>
+        Ez a függvény fogja megpróbálni a kód visszafejtését, melyekhez a program által generált lehetséges 
+        kulcsokat fogja használni. Ha megfigyeljük, láthatjuk, hogy ez ugyanazt csinálja mint a titkositásnál
+        használt pár sor, ez azért van mert ha valamit kétszer exorozunk akkor az eredeti szöveget kapjuk
+        vissza, tehát egyszer exor=titkositott, kétszer exor=tiszta szöveg.
+
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+          
+           int exor_tores (const char kulcs[], int kulcs_meret, char titkos[],int titkos_meret)
+	              
+          {
+
+            exor (kulcs, kulcs_meret, titkos, titkos_meret);
+
+            return tiszta_lehet (titkos, titkos_meret);
+
+          }
+
+   
+            ]]>
+        </programlisting>
+        Itt hivjuk meg a korábban bemutatott másik 2 függvényt. A return-ünk akkor lesz igaz 
+        ha a tiszta_lehet függvénynek sikerült a visszafejtés.
+
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+          
+    while ((olvasott_bajtok = read (0, (void *) p, (p - titkos + OLVASAS_BUFFER <
+		 MAX_TITKOS) ? OLVASAS_BUFFER : titkos + MAX_TITKOS - p)))
+	  p += olvasott_bajtok;
+		 
+  for (int i = 0; i < MAX_TITKOS - (p - titkos); ++i)
+    titkos[p - titkos + i] = '\0';
+
+  
+  for (int ii = '0'; ii <= '9'; ++ii)
+    for (int ji = '0'; ji <= '9'; ++ji)
+      for (int ki = '0'; ki <= '9'; ++ki)
+	      for (int li = '0'; li <= '9'; ++li)
+	        for (int mi = '0'; mi <= '9'; ++mi)
+	          for (int ni = '0'; ni <= '9'; ++ni)
+	            for (int oi = '0'; oi <= '9'; ++oi)
+		            for (int pi = '0'; pi <= '9'; ++pi)
+		              {
+		                kulcs[0] = ii;
+		                kulcs[1] = ji;
+		                kulcs[2] = ki;
+		                kulcs[3] = li;
+		                kulcs[4] = mi;
+		                kulcs[5] = ni;
+		                kulcs[6] = oi;
+		                kulcs[7] = pi;
+
+		    if (exor_tores (kulcs, KULCS_MERET, titkos, p - titkos))
+		      printf
+			("Kulcs: [%c%c%c%c%c%c%c%c]\nTiszta szoveg: [%s]\n",
+			 ii, ji, ki, li, mi, ni, oi, pi, titkos);
+
+		     
+		    exor (kulcs, KULCS_MERET, titkos, p - titkos);
+		  }
+   
+            ]]>
+        </programlisting>
+        A main függvényünkön belül elkezdjük a bufferbe olvasni a dekódolandó szöveget, ha a szöveg végére
+        érünk és a bufferben üres hely marad azokat töröljük. Ezután 8 egymásba ágyazott for ciklussal elkezdjük előállitani
+        a kulcsot. A legbelső for ciklus végén meghivjuk az exor_tores-t és megvizsgáljuk, hogy a
+        a kulcs amit találtunk jó-e, tehát megvizsgáljuk elsőnek a 00000000-t, majd 00000001-t 
+        és igy tovább.
+        Amint azt láthatjuk, a for ciklusok 0-tól 9-ig mennek, magyarul ez a program csak olyan
+        kulcsot tud visszafejteni ami 8 darab számból áll.
+
+
+      </para>
     </section>        
     <section>
         <title>Neurális OR, AND és EXOR kapu</title>
@@ -260,9 +496,90 @@
         <para>
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R</link>               
         </para>
+      <para>
+        Tutorom a megoldásban: Lovász Botond
+      </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+        </para>
+      <para>
+        A neuronok agyunk olyan idegsejtjei melyek elekromos potenciállal rendelkeznek és
+        más sejtekkel speciális kapcsolatok, úgynevezet szinapszisok révén kommunikálnak.
+        Mesterséges neuronnak azt a matematikai modelt nevezzük, amely a biológiai neuron képletét hivatott
+        megadni (McCulloch és Pitts, 1943). A mesterséges neuronok alapvető elemei egy (mesterséges) neurális hálónak.
+      </para>
+      <para>
+        A model megértéséhez először is fontos tudni, hogy egy neuron akkor "tüzel" ha a bemeneti értékek súlyozott
+        összege meghalad egy bizonyos küszöböt. 
+      </para>
+      <para>
+        Először is a programunkat meg kell tanitani az OR AND és EXOR logikai műveletek használatára, ez
+        a programunkban igy fog kinézni:
+        <programlisting language = "R">
+        <![CDATA[
+          
+          a1    <- c(0,1,0,1)
+          a2    <- c(0,0,1,1)
+          OR    <- c(0,1,1,1)
+
+          or.data <- data.frame(a1, a2, OR)
+          
+          a1    <- c(0,1,0,1)
+          a2    <- c(0,0,1,1)
+          OR    <- c(0,1,1,1)
+          AND   <- c(0,0,0,1)
+
+          orand.data <- data.frame(a1, a2, OR, AND)
+          
+          a1      <- c(0,1,0,1)
+          a2      <- c(0,0,1,1)
+          EXOR    <- c(0,1,1,0)
+
+          exor.data <- data.frame(a1, a2, EXOR)
+          nn.exor <- neuralnet(EXOR~a1+a2, exor.data, hidden=0, linear.output=FALSE, stepmax = 1e+07, threshold = 0.000001)
+
+          plot(nn.exor)
+
+          compute(nn.exor, exor.data[,1:2])
+
+
+            ]]>
+      </programlisting>
+        
+        A compute fügvénynek átadjuk a betantott neurális hálót és az elején megadott adatokat, ami ezután
+        kiszámolja a logikai műveletek eredményét. Ha ezt igy futtatjuk azt tapasztaljuk, hogy a program 
+        nagyjából 50%-os pontossággal fog dolgozni, ami nem jobb mint a véletlenszerű találgatás. Ha viszont
+        ún. rejtett neuronokat adunk hozzá, azaz növeljük a számukat (mert ügyebár a fenti programban
+        is látható hogy van csak 0-ra van állitva), a program tanulékonysága drasztikusan megnő, ezzel növelve 
+        a pontosságot is. Növeljük hát meg mind a rejtett neuronok rétegét mind a számukat: 
+        
+      </para>
+      <para>
+        
+        <programlisting language = "R">
+          <![CDATA[
+          
+          a1      <- c(0,1,0,1)
+          a2      <- c(0,0,1,1)
+          EXOR    <- c(0,1,1,0)
+
+          exor.data <- data.frame(a1, a2, EXOR)
+
+          nn.exor <- neuralnet(EXOR~a1+a2, exor.data, hidden=c(6, 4, 6), linear.output=FALSE, stepmax = 1e+07, threshold = 0.000001)
+
+          plot(nn.exor)
+
+          compute(nn.exor, exor.data[,1:2])
+
+
+
+            ]]>
+        </programlisting>
+
+        Ezekkel az értékekkel futtatva a plot függvény ugyan sokkal bonyolultabb ábrát fog kirajzolni, 
+        de a rejtett neuronaknak hála mostmár az EXOR műveletet is nagy pontossággal végzi el a program.
+
+      </para>
     </section>        
     <section>
         <title>Hiba-visszaterjesztéses perceptron</title>
