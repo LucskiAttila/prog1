@@ -6,7 +6,7 @@
         </keywordset>
     </info>
     <section>
-        <title><type>int ***</type> háromszögmátrix</title>
+        <title><type>double **</type> háromszögmátrix</title>
         <para>
            
         </para>
@@ -14,11 +14,97 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:  <link xlink:href="https://github.com/vajkone/prog1/blob/master/caesar/matrix.c">https://github.com/vajkone/prog1/blob/master/caesar/matrix.c</link>              
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+        </para>  
+        <para>
+            A háromszögmátrixok olyan négyzetes mátrixok (mátrixok melyeknek sorainak és oszlopainak száma
+            megegyeznek), melyeknek a főátló alatti vagy feletti értékei csupa nullák. Egy ilyen mátrixban
+            a determináns kiszámitása is pofon egyszerű, hiszen csak a főátlóban lévő számokat kell összeszorozni.
+            
+        </para>
+      <para>
+        Mi most egy alsó háromszögmátrixot fogunk létrehozni, ami azt jelenti, hogy a főátló felett lesznek
+        a nullák.
+        
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+    int nr = 5;
+    double **tm;
+    
+    printf("%p\n", &tm);
+    
+    if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
+    {
+        return -1;
+    }
+
+    printf("%p\n", tm);
+    
+    for (int i = 0; i < nr; ++i)
+    {
+        if ((tm[i] = (double *) malloc ((i + 1) * sizeof (double))) == NULL)
+        {
+            return -1;
+        }
+
+    }
+            ]]>
+        </programlisting>
+        Az nr-ben tároljuk, hogy mekkora mátrixot szeretnénk, ez a mostani egy 5x5-ös lesz.
+        Ezután ellenőrizzük, hogy a malloc által lefoglalt memória területünk NULL-ra mutató pointert ad-e vissza,
+        (pl nincs memória) ha igen akkor hibába ütköztünk és kilép a programból.
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+      for (int i = 0; i < nr; ++i)
+        for (int j = 0; j < i + 1; ++j)
+            tm[i][j] = (i * (i + 1) / 2 + j)+1;
+            
+         for (int i = 0; i < nr; ++i)
+        {
+        for (int j = 0; j < i + 1; ++j)
+            printf ("%f, ", tm[i][j]);
+        printf ("\n");
+        }     
+            ]]>
+        </programlisting>
+    
+        Itt értek adunk a mátrix elemeinek, 1-től kezdve iterálva, majd ki is irjuk a mátrixot.
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+    
+    tm[3][0] = 42.0;
+    (*(tm + 3))[1] = 43.0;	
+    *(tm[3] + 2) = 44.0;
+    *(*(tm + 3) + 3) = 45.0;
+
+    for (int i = 0; i < nr; ++i)
+    {
+        for (int j = 0; j < i + 1; ++j)
+            printf ("%f, ", tm[i][j]);
+        printf ("\n");
+    }
+
+    for (int i = 0; i < nr; ++i)
+        free (tm[i]);
+
+    free (tm);
+   
+            ]]>
+        </programlisting>
+
+        Itt különböző módokon adunk értéket a 4. sor elemeinek. A tm[s][o] mátrixban az s a sor számát az o pedig az oszlopét
+        jelöli. A program végén, mikor már nincs rá szükségünk, a free() függvénnyel felszabaditjuk a 
+        a mátrix számára lefoglalt memóriát. 
+      </para>
     </section>        
     <section>
         <title>C EXOR titkosító</title>
@@ -29,11 +115,109 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/blob/master/caesar/exortitkosit.c">https://github.com/vajkone/prog1/blob/master/caesar/exortitkosit.c</link>               
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+        </para>
+      <para>
+        A titkositáshoz szükségünk lesz egy titkositando szövegre és egy kulcsra, valamint az elvre ami
+        alapján a szöveget titkositjuk. Jelen esetben ez az elv a XOR logikai művelet által biztositott
+        lehetőségeken fog alapulni. Korábban már használtuk a kizáró vagyot 2 érték felcserélésekor, most
+        megnézzük, hogyan tudjuk titkositáshoz használni.
+        
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+          
+          #define MAX_KULCS 100
+          #define BUFFER_MERET 256
+          
+          int main (int argc, char **argv)
+          {
+          char kulcs[MAX_KULCS];
+          char buffer[BUFFER_MERET];
+
+          int kulcs_index = 0;
+          int olvasott_bajtok = 0;
+ 
+   
+            ]]>
+        </programlisting>
+
+        Konstansként definiáljuk a max_kulcsot és a buffer_meret-et. Ezek értéke a későbbiekben már
+        nem változtatható. A main függvényünk most a szokásostól eltérően kap 2 argumentumot, ezekre azért
+        van szükség mert a kódolandó szöveget és kulcsot parancssorból fogja megkapni. Ezek után létrehozzuk
+        a kulcs tömbünket (melynek mérete definició szerint 100) és a buffer tömbünket melybe a beolvasott karaktereket
+        fogjuk tárolni (egyszerre ügye maximum 256ot). Inicializálunk két változót, az egyik a kulcs tömb
+        bejárására a másik pedig a beolvasott bájtok számlálására szolgál. 
+      </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+          
+          int kulcs_meret = strlen (argv[1]);
+          strncpy (kulcs, argv[1], MAX_KULCS);
+          
+          while ((olvasott_bajtok = read (0, (void *) buffer, BUFFER_MERET)))
+    {
+
+      for (int i = 0; i < olvasott_bajtok; ++i)
+	{
+
+	  buffer[i] = buffer[i] ^ kulcs[kulcs_index];
+	  kulcs_index = (kulcs_index + 1) % kulcs_meret;
+
+	}
+
+      write (1, buffer, olvasott_bajtok);
+ 
+   
+            ]]>
+        </programlisting>
+
+        A strlen() függvény visszaadja az argv[1] hosszát, azaz a második argumentumét ([1] = második) 
+        tehát az általunk megadott kulcsét, amelyet el is mentünk a kulcs_meret változóba. Ezután a strncopy()
+        függvénnyel a kulcs tömbünkbe másoljuk a parancssorban megadott kulcsunkat karakterenként (a kulcs
+        ügye egy char tömb).
+        
+      </para>
+
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+         
+          
+          while ((olvasott_bajtok = read (0, (void *) buffer, BUFFER_MERET)))
+          {
+
+            for (int i = 0; i < olvasott_bajtok; ++i)
+	              {
+
+	                buffer[i] = buffer[i] ^ kulcs[kulcs_index];
+	                kulcs_index = (kulcs_index + 1) % kulcs_meret;
+
+	              }
+
+             write (1, buffer, olvasott_bajtok);
+            
+           }
+ 
+   
+            ]]>
+        </programlisting>
+
+        A while ciklusunk addig fog tartani, amig a read() függvénynek van mit beolvasnia. Jelen esetben a buffer
+        tömbbe fog beolvasni standard inputról (ez a 0) BUFFER_MERET-nyi, azaz 256 bájtot. Ezután egy belső
+        ciklusban végigmegyünk a jelenlegi beolvasott bájtokon vagy ha úgy tetszik akkor a karakterek számán
+        és a bufferben tárolt beolvasott szövegrészt összeexorozzuk a kulcs adott (a kulcs index adja meg hogy melyik) 
+        karakterével. Ezután növeljük a kulcs indexét eggyel. A %kulcs_meret arra szolgál, hogy ha elérjük a kulcs méretét, azaz végét akkor a következő
+        iterációban előről, 0-ról induljon a kulcs index. Végül pedig kiirjuk a buffer tartalmát (ami már
+        ügye a titkos szöveg) a standard outputra. 
+
+      </para>
+      
     </section>        
     <section>
         <title>Java EXOR titkosító</title>
