@@ -621,17 +621,21 @@
       </para>
                     
     </section>
+  
   <section>
 
     <title> Gutenberg olvasónaplók</title>
     <para>
-      
-      
+
+
     </para>
-    <title>
-      Juhász István
-      MAGAS SZINTŐ PROGRAMOZÁSI NYELVEK 1
-    </title>
+  </section>
+  
+  <section>
+    <title>Juhász István - MAGAS SZINTŐ PROGRAMOZÁSI NYELVEK 1 </title>
+      
+      
+   
     <para>
       A számitógépek megjelenése lehetőve tette az emberi gondolkodás bizonyos elemeinek automatizálását.
       Ehhez viszont az embernek szüksége volt arra hogy a számitógépet programozni tudja. Ennek a kivitelézésre
@@ -643,9 +647,14 @@
       vonatkoznak bizonyos nyelvtani és formai szabályok - ezeket szintaktikai szabályoknak nevezzük. Egy nyelvre vonatkoznak ugyanakkor
       szemantikai szabályok is, ezek az értelmezési, tartalmi és jelentésbéli szabályok.
     </para>
-    <title>
-      Kernigen and Ritchie: A C programozási nyelv
-    </title>
+  
+  </section>
+  
+  <section>
+    
+    <title> Kernigen and Ritchie: A C programozási nyelv </title>
+     
+    
     <para>
       A könyv azzal a céllal iródott, hogy az olvasó a lehető leggyorsabban eljusson arra a pontra, 
       ahol már önállóan működő és használható programokat tud irni. A könyv irói feltételezik, hogy 
@@ -653,6 +662,7 @@
       próbálkozott. Ez persze nem jelenti azt, hogy bármely fontos részt átugranának, csak szimplán a 
       szakzsargont nem részletezik. 
     </para>
+    
     <para>
       A bevezető alapvető fogalmakra és tudnivalókra koncentrál: Változók
       és állandók, a C nyelv aritmetikája, input és output alapvető kezelése és az ezekhez kapcsolódó ismeretek,
@@ -663,9 +673,13 @@
       szétszórtan lesz megtalálható a könyvben és nem tudunk majd szükség esetén egy bizonyos fejezetre
       visszalapozni, ahol minden egyben van. 
     </para>
-    <title>
-      Benedek Zoltán - Levendovszky Tihamér: Szoftverfejlesztés C++ nyelven
-    </title>
+  
+  </section>
+  
+  <section>
+    <title>Benedek Zoltán - Levendovszky Tihamér: Szoftverfejlesztés C++ nyelven</title>
+      
+    
     <para>
 
     </para>
