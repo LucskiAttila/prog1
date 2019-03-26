@@ -27,11 +27,10 @@
         Ilyenen alakzatokat/mintákat produkál például a brokkoli is ha eléggé nagy nagyitásban kezdjük
         elv izsgálni.
         <figure>
-                <title>Mandelbrot halmaz</title>
+                <title>Fraktál</title>
                     <mediaobject>
                         <imageobject>
-                            <imagedata fileref="
-        prog1/mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
+                            <imagedata fileref="prog1/mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
                         </imageobject>
                     </mediaobject>
             </figure>
