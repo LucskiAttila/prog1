@@ -14,8 +14,29 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/blob/master/mandelbrot/mandelbrot.cpp">https://github.com/vajkone/prog1/blob/master/mandelbrot/mandelbrot.cpp</link>                
         </para>
+      <para>
+        A Mandelbrot halmazt Benoît Mandelbrot fedezte fel 1979-ben, de csak később 1982-ben nevezték el
+        ténylegesen róla. Ezt a halmazt a komplex számsik elemei adják. A halmazt ábrázolva egy fraktált
+        kapunk. A fraktálok olyan végtelenül komplex geometriai alakzatok melyeket két fő tulajdonságuk
+        különböztet meg az átlagos geometriai alakzatoktól. Egyik, hogy a határoló vonalai "recések" avagy "érdesek",
+        a másik pedig, hogy önhasonló tulajdonsággal rendelkeznek. Ez azt jelenti, hogy ha elkezdünk a korábban
+        emlitett "recékre" közeliteni, akkor előbb-utóbb nagy valószinűséggel az visszakapjuk az 
+        eredeti alakzatot. Ilyen alakzatok nem csak a matematikában fordulnak elő, hanem a természetben is.
+        Ilyenen alakzatokat/mintákat produkál például a brokkoli is ha eléggé nagy nagyitásban kezdjük
+        elv izsgálni.
+        <figure>
+                <title>Mandelbrot halmaz</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="
+        prog1/mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
+                        </imageobject>
+                    </mediaobject>
+            </figure>
+
+    </para>
     </section>        
         
     <section>
