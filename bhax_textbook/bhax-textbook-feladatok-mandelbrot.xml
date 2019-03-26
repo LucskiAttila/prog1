@@ -30,7 +30,7 @@
                 <title>Fraktál</title>
                     <mediaobject>
                         <imageobject>
-                            <imagedata fileref="prog1/mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
+                            <imagedata fileref="../mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
                         </imageobject>
                     </mediaobject>
             </figure>
