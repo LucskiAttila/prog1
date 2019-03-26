@@ -5,7 +5,7 @@
 // http://progpater.blog.hu/2011/03/26/kepes_egypercesek
 //
 // Fordítás:
-// g++ mandelpng.c++ `libpng-config --ldflags` -o mandelpng
+// g++ mandelbrot.cpp `libpng-config --ldflags` -o mandelpng
 // Ezután ./mandelpng mandelpng.png 
 
 #include <iostream>
