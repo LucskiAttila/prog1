@@ -19,23 +19,124 @@
       <para>
         A Mandelbrot halmazt Benoît Mandelbrot fedezte fel 1979-ben, de csak később 1982-ben nevezték el
         ténylegesen róla. Ezt a halmazt a komplex számsik elemei adják. A halmazt ábrázolva egy fraktált
-        kapunk. A fraktálok olyan végtelenül komplex geometriai alakzatok melyeket két fő tulajdonságuk
+        kapunk.
+
+        <figure>
+          <title>Mandelbrot halmaz</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../mandelbrot/mandelbrot.png" format="PNG" scale="150"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+      </para>
+      <para>
+        A fraktálok olyan végtelenül komplex geometriai alakzatok melyeket két fő tulajdonságuk
         különböztet meg az átlagos geometriai alakzatoktól. Egyik, hogy a határoló vonalai "recések" avagy "érdesek",
         a másik pedig, hogy önhasonló tulajdonsággal rendelkeznek. Ez azt jelenti, hogy ha elkezdünk a korábban
-        emlitett "recékre" közeliteni, akkor előbb-utóbb nagy valószinűséggel az visszakapjuk az 
+        emlitett "recékre" közeliteni, akkor előbb-utóbb nagy valószinűséggel az visszakapjuk az
         eredeti alakzatot. Ilyen alakzatok nem csak a matematikában fordulnak elő, hanem a természetben is.
         Ilyenen alakzatokat/mintákat produkál például a brokkoli is ha eléggé nagy nagyitásban kezdjük
         elv izsgálni.
         <figure>
-                <title>Fraktál</title>
-                    <mediaobject>
-                        <imageobject>
-                            <imagedata fileref="prog1/mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
-                        </imageobject>
-                    </mediaobject>
-            </figure>
+          <title>Fraktál a természetben</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="150"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
 
+      </para>
+
+      <para>
+
+        Lássuk hát, hogy hogyan lehet az első ábrán látott képet egy program segitségével legenerálni.
+        Mivel mi ezt most c++ban fogjuk elkésziteni ezért először is szükségünk lesz a png++ header file-ra
+        amivel ha még nem rendelkezünk, először is le kell töltenünk. Ehhez terminálban adjuk ki a következő
+        parancsot: sudo apt-get install libpng++-dev.
+
+      </para>
+      <para>
+        Ha ez megvan nézzük, hogyan is épül fel a program. Először is include-oljuk a letöltött png++
+        header file-unkat:
+        
+        <programlisting language="c++">
+        <![CDATA[
+      #include <iostream>
+      #include <png++/png.hpp>
+
+      }]]>
+      </programlisting>
+      
     </para>
+      <para>
+        Ezután megadjuk a függvény értékkészletét, a majd létrehozandó kép szélességét és
+        magasságát és az iterációs határt amit majd a későbbi while ciklusban fogunk használni.
+        Továbbá elkészitjük a png képet amibe majd pixelenként belerajzoljuk a mandelbrot halmazt.
+        <programlisting language="c++">
+          <![CDATA[
+    double a = -2.0, b = .7,  c = -1.35, d = 1.35;
+    int szelesseg = 600, magassag = 600, iteraciosHatar = 1000;
+    
+    
+    png::image <png::rgb_pixel> kep (szelesseg, magassag);
+
+      }]]>
+        </programlisting>
+      </para>
+      <para>
+        <programlisting language="c++">
+          <![CDATA[
+    double dx = (b-a)/szelesseg;
+    double dy = (d-c)/magassag;
+    double reC, imC, reZ, imZ, ujreZ, ujimZ;
+    
+    int iteracio = 0;
+    std::cout << "Szamitas";
+    
+    for (int j=0; j<magassag; ++j) {
+        
+        for (int k=0; k<szelesseg; ++k) {
+            
+            reC = a+k*dx;
+            imC = d-j*dy;
+            
+            reZ = 0;
+            imZ = 0;
+            iteracio = 0;
+            
+            while (reZ*reZ + imZ*imZ < 4 && iteracio < iteraciosHatar) {
+                
+                ujreZ = reZ*reZ - imZ*imZ + reC;
+                ujimZ = 2*reZ*imZ + imC;
+                reZ = ujreZ;
+                imZ = ujimZ;
+                
+                ++iteracio;
+                
+            }]]>
+        </programlisting>
+
+      </para>
+      <para>
+        Végül pedig az elején létrehozott kep png-be belrajzoljuk a generált mandelbrot halmazt,
+        majd ezt a png-t ténylegesen elhelyezzük a felhasználó által, argumentumként megadott
+        png állományba.
+        <programlisting language="c++">
+          <![CDATA[
+    kep.set_pixel(k, j, png::rgb_pixel(255-iteracio%256,
+                                      255-iteracio%256, 
+                                      255-iteracio%256));
+        }
+        std::cout << "." << std::flush;
+    }
+    
+    kep.write (argv[1]);
+
+      }]]>
+        </programlisting>
+      </para>
     </section>        
         
     <section>
@@ -47,8 +148,23 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:<link xlink:href="https://github.com/vajkone/prog1/blob/master/mandelbrot/3.1.2.cpp">https://github.com/vajkone/prog1/blob/master/mandelbrot/3.1.2.cpp</link>               
         </para>
+      <para>
+        Az előző programhoz képest az eltérések a következők: A felhasználó parancssori argumentumként
+        megadhat 8 paramétert, de nem kötelező, ekkor az alapértelmezett paraméterekkel fog lefutni a program,
+        valamint most a c++ beépitett complex osztályát fogjuk használni a komplex számsikon való lépegetéshez.
+        A kép itt most szinesebb lesz, valami ilyesmi:
+        <figure>
+          <title>Komplex mandelbrot halmaz</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../mandelbrot/komplex.png" format="PNG" scale="150"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+       
+      </para>
     </section>        
                 
     <section>
@@ -62,7 +178,20 @@
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+          A biomorfok élő organizmusokra emlékeztető alakzatok, de nem feltétlenül biotikus eredetűek,
+          hanem akár számititógéppel generáltak, mint például most a mi esetünkben. A paraméterektől
+          függően sokféle alakzatot felvehetnek, mint például ez:
+
+          <figure>
+            <title>Biomorf</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../mandelbrot/biomorf.png" format="PNG" scale="150"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+            
+            
         </para>                        
     </section>                     
 
