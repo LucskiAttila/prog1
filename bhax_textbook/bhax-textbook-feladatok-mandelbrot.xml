@@ -25,7 +25,7 @@
           <title>Mandelbrot halmaz</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../mandelbrot/mandelbrot.png" format="PNG" scale="100"/>
+              <imagedata fileref="../mandelbrot/mandelbrot.png" format="PNG" scale="70"/>
             </imageobject>
           </mediaobject>
         </figure>
@@ -42,7 +42,7 @@
           <title>Fraktál a természetben</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="90"/>
+              <imagedata fileref="../mandelbrot/6744403181_9eaaa6323c_b.jpg" format="JPG" scale="120"/>
             </imageobject>
           </mediaobject>
         </figure>
@@ -159,7 +159,7 @@
           <title>Komplex mandelbrot halmaz</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../mandelbrot/komplex.png" format="PNG" scale="90"/>
+              <imagedata fileref="../mandelbrot/komplex.png" format="PNG" scale="40"/>
             </imageobject>
           </mediaobject>
         </figure>
@@ -186,7 +186,7 @@
             <title>Biomorf</title>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="../mandelbrot/biomorf.png" format="PNG" scale="150"/>
+                <imagedata fileref="../mandelbrot/biomorf.png" format="PNG" scale="40"/>
               </imageobject>
             </mediaobject>
           </figure>
