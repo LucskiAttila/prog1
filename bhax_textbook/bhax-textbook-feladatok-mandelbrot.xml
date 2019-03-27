@@ -25,7 +25,7 @@
           <title>Mandelbrot halmaz</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../mandelbrot/mandelbrot.png" format="PNG" scale="40"/>
+              <imagedata fileref="../mandelbrot/mandelbrot.png" format="PNG" scale="50"/>
             </imageobject>
           </mediaobject>
         </figure>
@@ -186,7 +186,7 @@
             <title>Biomorf</title>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="../mandelbrot/biomorf.png" format="PNG" scale="5"/>
+                <imagedata fileref="../mandelbrot/biomorf.png" format="PNG" scale="20"/>
               </imageobject>
             </mediaobject>
           </figure>
