@@ -196,7 +196,7 @@
         Kis történelmi kitekintés: Lempel–Ziv–Welch, azaz LZW egy univerzális adatvesztés nélkül járó
         tömöritési eljárás, melyet Abraham Lempel, Jacob Ziv és Terry Welch készitett. Az algoritmus közkedvelt
         egyszerű  implementálhatóságának hála. A Unix rendszerek file-ok tömöritése esetén valamint
-        a GIF képfájlok is ezt az algoritmust használják.
+        a GIF képfájlok is ezt az algoritmust használják, de mára a PNG már képformátum már elterjedtebb.
 
       </para>
     </section>        
