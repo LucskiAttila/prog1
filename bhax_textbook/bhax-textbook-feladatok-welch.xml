@@ -195,10 +195,174 @@
       <para>
         Kis történelmi kitekintés: Lempel–Ziv–Welch, azaz LZW egy univerzális adatvesztés nélkül járó
         tömöritési eljárás, melyet Abraham Lempel, Jacob Ziv és Terry Welch készitett. Az algoritmus közkedvelt
-        egyszerű  implementálhatóságának hála. A Unix rendszerek file-ok tömöritése esetén valamint
+        egyszerű  implementálhatóságának hála. A Unix rendszerek file-ok tömöritése esetén (compress) valamint
         a GIF képfájlok is ezt az algoritmust használják, de mára a PNG már képformátum már elterjedtebb.
 
       </para>
+      <para>
+        <programlisting language = "c">
+          <![CDATA[
+        typedef struct binfa
+        {
+        int ertek;
+        struct binfa *bal_nulla;
+        struct binfa *jobb_egy;
+
+        }  BINFA, *BINFA_PTR;
+         ]]>
+</programlisting>
+        Először is elkészitünk egy binfa struktúrát, amiben három dolgot definiálunk, az egyik egy int
+        változó, az érték, a másik kettő pedig (a fa szerkezet miatt) a gyerekeire mutató mutatók (jobb és bal gyerek).
+
+        <programlisting language = "c">
+          <![CDATA[
+       BINFA_PTR
+        uj_elem ()
+        {
+          BINFA_PTR p;
+
+          if ((p = (BINFA_PTR) malloc (sizeof (BINFA))) == NULL)
+            {
+              perror ("memoria");
+              exit (EXIT_FAILURE);
+            }
+          return p;
+        }
+         ]]>
+        </programlisting>
+        Ez a funkció fog tárhelyet foglalni az új elemek számára a memóriában, majd vissza is
+        adja a lefoglalt területre mutató pointert. Hogyha elfogyna a memória
+        akkor hibát dob a program és leáll.
+
+        <programlisting language = "c">
+          <![CDATA[
+       
+       
+        int main (int argc, char **argv)
+        {
+          char b;
+
+          BINFA_PTR gyoker = uj_elem ();
+          gyoker->ertek = '/';
+          BINFA_PTR fa = gyoker;
+
+         ]]>
+        </programlisting>
+
+
+
+        A main függvényünk elején létrehozunk egy karakter változót amibe majd a beovlasott karaktereket
+        fogjuk tárolni, továbbá léterhozzuk a gyökér értékét, ami most a / jel lesz, majd a fa mutatót
+        beállitjuk, hogy a gyoker-re mutasson.
+
+        <programlisting language = "c">
+          <![CDATA[
+
+        while (read (0, (void *) &b, 1))
+        {
+          write (1, &b, 1);
+          if (b == '0')
+          {
+          if (fa->bal_nulla == NULL)
+            {
+              fa->bal_nulla = uj_elem ();
+              fa->bal_nulla->ertek = 0;
+              fa->bal_nulla->bal_nulla = fa->bal_nulla->jobb_egy = NULL;
+              fa = gyoker;
+            }
+          else
+          {
+            fa = fa->bal_nulla;
+          }
+        }
+        else
+        {
+          if (fa->jobb_egy == NULL)
+          {
+            fa->jobb_egy = uj_elem ();
+            fa->jobb_egy->ertek = 1;
+            fa->jobb_egy->bal_nulla = fa->jobb_egy->jobb_egy = NULL;
+            fa = gyoker;
+          }
+        else
+        {
+          fa = fa->jobb_egy;
+        }
+          }
+        }
+
+         ]]>
+      </programlisting>
+        
+        Itt jön az input beolvasása (standard inputról (0), b bufferba, 1 byte-ot (azaz 1 karaktert egyszerre).
+        Majd megvizsgáljuk, hogy a kapott karakter
+        1-es vagy 0-ás-e és annak megfelelően megvizsgáljuk megint, hogy ahova a fa mutató mutat (első futásnál
+        ez ügye mindig a gyökér) elemnek az adott gyereke üres-e. Ha igen, akkor létrehozunk egy 
+        új elemet az uj_elem() fügvénnyel, értékét beállitjuk a megfelelőre(0-ás vagy 1-es) és megmondjuk
+        hogy ennek az új elemnek még nincsenek gyerekei, tehát beállitjuk őket NULL-ra. Ezután a fa
+        mutatót visszaállitjuk a gyökérre. Ha viszont a vizsgált gyerek nem üres, tehát már áll ott 1-es vagy 
+        0-ás, akkor a fa mutatóval rálépünk arra a gyerekre amit éppen beolvastunk
+        és várjuk a következő vizsgálandó karaktert, hogy legközelebb már ennek a gyereknek a gyerekeit
+        vizsgálhassuk ugyanezzel a módszerrel. 
+        
+
+      </para>
+      <para>
+        Végül jöhet a kiiratás és a memória felszabaditás:
+        <programlisting language = "c">
+          <![CDATA[
+          
+            printf ("\n");
+            kiir (gyoker);
+            extern int max_melyseg;
+            printf ("melyseg=%d", max_melyseg);
+            szabadit (gyoker);
+          }
+
+          static int melyseg = 0;
+          int max_melyseg = 0;
+
+          void
+          kiir (BINFA_PTR elem)
+          {
+            if (elem != NULL)
+              {
+                ++melyseg;
+                if (melyseg > max_melyseg)
+	          max_melyseg = melyseg;
+                kiir (elem->jobb_egy);
+                for (int i = 0; i < melyseg; ++i)
+	          printf ("---");
+                printf ("%c(%d)\n", elem->ertek < 2 ? '0' + elem->ertek : elem->ertek,
+	                melyseg);
+                kiir (elem->bal_nulla);
+                --melyseg;
+              }
+          }
+
+          void
+          szabadit (BINFA_PTR elem)
+          {
+            if (elem != NULL)
+              {
+                szabadit (elem->jobb_egy);
+                szabadit (elem->bal_nulla);
+                free (elem);
+              }
+          }
+ ]]>
+</programlisting>
+          
+        A szabadit függvényt talán nem kell túltárgyalni, rekurzivan törli az elemeket a memóriából 
+        a gyökértől kezdve. 
+        A kiir függvény már kicsit trükkösebb: itt történik a fa-struktúra kialakitása és annak
+        a standard outputra való kiirása. Először is rekurzivan
+        bejárjuk a jobb oldali gyereket (meghivjuk rá is a kiir függvényt), majd feldolgozzuk a for cikluson
+        belül a gyökeret, ezután ismét rekurzivan bejárjuk a bal oldali gyermeket. Ezt a bejárást hivjuk
+        inorder bejárásnak.
+        
+      </para>
+      
     </section>        
         
     <section>
@@ -212,6 +376,72 @@
         <para>
             Megoldás forrása:                
         </para>
+      <para>
+        Az előző feladatban tárgyalt binfa tökéletesen megfelel számunkra ebben a feladatban is, az egyetlen
+        rész amelyen módositani fogunk az a kiir függvényben lesz. Eddig ügye a kiir függvény inorder
+        bejárást végzett a fán, ami azt jelenti, hogy előbb a jobboldali gyermeket járjuk be,
+        aztán a gyökeret dolgozza fel, majd
+        a baloldali gyereket járja be ( mindezt rekurzivan). A preordernél előbb feldolgozzuk a gyökeret, majd bejárjuk
+        előbb a bal majd a jobb oldali gyereket. A postorderben pedig a gyökeret dolgozzuk fel utoljára.
+        Nézzük is hogyan néz ki a postorder bejárás: 
+
+        <programlisting language = "c">
+          <![CDATA[
+          
+          void kiir(BINFA_PTR elem)
+          {
+
+           if (elem !=NULL)
+            {
+             ++melyseg
+             if (melyseg>max_melyseg) 
+              max melyseg = melyseg;
+             kiir(elem->jobb_egy);
+             kiir(elem->bal_nulla);
+             for (int i=0; i<melyseg;i++)
+              printf("---");
+             printf("%c(%d)\n",elem->ertek<2 ? '0' + elem->ertek : elem->ertek, melyseg-1);
+             --melyseg
+            }
+
+          }
+          
+
+          ]]>
+        </programlisting>
+
+        Látható, hogy most a for ciklus amelyben a paraméterként kapott elemet (a gyökeret) feldolgozzuk
+        a két rekurziv hivás utánra került, igy előbb bejárjuk a jobb oldali gyermekeit a fának, majd a
+        bal oldalit és csak aztán dolgozzuk fel a gyökeret. A preorder bejárás ennek az ellentéte, előbb
+        feldolgozzuk a gyökeret és csak aztán a gyerekeit:
+
+        <programlisting language = "c">
+          <![CDATA[
+          
+          void kiir(BINFA_PTR elem)
+          {
+
+           if (elem !=NULL)
+            {
+             ++melyseg
+             if (melyseg>max_melyseg) 
+              max melyseg = melyseg;
+              for (int i=0; i<melyseg;i++)
+              printf("---");
+             printf("%c(%d)\n",elem->ertek<2 ? '0' + elem->ertek : elem->ertek, melyseg-1);
+             kiir(elem->jobb_egy);
+             kiir(elem->bal_nulla);
+             
+             --melyseg
+            }
+
+          }
+          
+
+          ]]>
+        </programlisting>
+          
+      </para>
     </section>        
                         
     <section>
@@ -224,7 +454,7 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://progpater.blog.hu/2011/04/14/egyutt_tamadjuk_meg">https://progpater.blog.hu/2011/04/14/egyutt_tamadjuk_meg</link>              
         </para>
     </section>        
                 
