@@ -454,8 +454,170 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://progpater.blog.hu/2011/04/14/egyutt_tamadjuk_meg">https://progpater.blog.hu/2011/04/14/egyutt_tamadjuk_meg</link>              
+            Megoldás forrása: <link xlink:href="https://progpater.blog.hu/2011/03/31/imadni_fogjatok_a_c_t_egy_emberkent_tiszta_szivbol">https://progpater.blog.hu/2011/03/31/imadni_fogjatok_a_c_t_egy_emberkent_tiszta_szivbol</link>              
         </para>
+      <para>
+        Kezdjük is azzal, hogy a C struktúránkat egy class-á, azaz osztállyá varázsoljuk. 
+        <programlisting language = "c">
+          <![CDATA[
+        class LZWBinFa
+        {
+        public:
+        LZWBinFa (char b = '/'):betu (b), balNulla (NULL), jobbEgy (NULL) {};
+        ~LZWBinFa () {};
+        
+         ]]>
+      </programlisting>
+        Nézzük hogyan tovább. 
+        <programlisting language = "c">
+          <![CDATA[
+
+
+    void operator<<(char b)
+    {
+        if (b == '0')
+        {
+            // van '0'-s gyermeke az aktuális csomópontnak?
+            if (!fa->nullasGyermek ()) // ha nincs, csinálunk
+            {
+                Csomopont *uj = new Csomopont ('0');
+                fa->ujNullasGyermek (uj);
+                fa = &gyoker;
+            }
+            else // ha van, arra lépünk
+            {
+                fa = fa->nullasGyermek ();
+            }
+        }
+        else
+        {
+            if (!fa->egyesGyermek ())
+            {
+                Csomopont *uj = new Csomopont ('1');
+                fa->ujEgyesGyermek (uj);
+                fa = &gyoker;
+            }
+            else
+            {
+                fa = fa->egyesGyermek ();
+            }
+        }
+    }
+    
+         ]]>
+        </programlisting>
+        Nézzük mi is történik itt. Ez a kódrészlet már ismerős a program C váltzatából, 
+        itt vizsgálta a programunk, hogy 0-ást vagy 1-est kapott-e, és cselekedett utána annak megfelelően.
+        Itt ugyanez történik csak egy kis módositással. Az <function><![CDATA[operator<<]]></function> segitségével
+        ugynevezett shiftelést hajtunk végre. Ezzel a funkcióval a bemenetként kapott elemeket rögtön belerakjuk a fa 
+        struktúránkba, de ez majd a végén a main függvénynél lesz látványos és fog értelmet nyerni.
+        A csomopontból új osztályt készitettünk, melyből példányositani a new szócskával tudunk. Vessünk is
+        egy pillantást a csomópont osztályra, melyet az LZWBinFa osztályon belül hoztunk létre:
+        <programlisting language = "c">
+          <![CDATA[
+
+
+   private:
+
+    class Csomopont
+    {
+    public:
+        Csomopont (char b = '/'):betu (b), balNulla (0), jobbEgy (0) {};
+        ~Csomopont () {};
+        Csomopont *nullasGyermek () {
+            return balNulla;
+        }
+        Csomopont *egyesGyermek ()
+        {
+            return jobbEgy;
+        }
+        void ujNullasGyermek (Csomopont * gy)
+        {
+            balNulla = gy;
+        }
+        void ujEgyesGyermek (Csomopont * gy)
+        {
+            jobbEgy = gy;
+        }
+    private:
+        friend class LZWBinFa;
+        char betu;
+        Csomopont *balNulla;
+        Csomopont *jobbEgy;
+        Csomopont (const Csomopont &);
+        Csomopont & operator=(const Csomopont &);
+    }; 
+    
+         ]]>
+        </programlisting>
+        A Csomopont alapértelmezett kunstroktorában a csomópont értékét q '/'-re állitjuk, bal és jobb
+        gyerekének pedig NULL NULL értéket adunk. A nullasGyermek és egyesGyermek függvények, melyek
+        a bal és jobb gyerekre mutató mutatót fognak visszaadni. Az ujEgyesGyermek és ujNullasGyermek
+        pedig a jobb és bal gyermek mutatóját állitja a paraméterként átadott csomópontokra.
+        Mostmár értelmet nyer az egyel fentebbi kódrészlet is, hogy a
+
+<programlisting language = "c">
+          <![CDATA[
+        if (b == '0')
+        {
+        if (fa->bal_nulla == NULL)
+        {
+        fa->bal_nulla = uj_elem ();
+        fa->bal_nulla->ertek = 0;
+        fa->bal_nulla->bal_nulla = fa->bal_nulla->jobb_egy = NULL;
+        fa = gyoker;
+        }
+  ]]>
+      </programlisting>
+        kódból, hogyan lett:
+        <programlisting language = "c">
+          <![CDATA[
+          if (b == '0')
+            {
+            
+            if (!fa->nullasGyermek ()) 
+            {
+                Csomopont *uj = new Csomopont ('0');
+                fa->ujNullasGyermek (uj);
+                fa = &gyoker;
+            }
+          
+          
+          ]]>
+        </programlisting>
+        
+      </para>
+      <para>
+        Vessünk hát egy pillantást a main függvényünkre, ahol igazából már csak a beolvasás zajlik
+        egy while ciklussal:
+        <programlisting language = "c">
+          <![CDATA[
+
+        
+       int main ()
+        {
+        char b;
+        LZWBinFa binFa;
+
+        while (std::cin >> b)
+        {
+        binFa << b;
+        }
+
+    binFa.kiir ();
+    binFa.szabadit ();
+
+    return 0;
+    }
+       ]]>
+  </programlisting>
+        Tehát létrehozzuk egy LZWBinFa példányt melyet elnevezünk binFa-nak, majd amig van bemenet addig
+        azt szépen pakoljuk is bele egyenes a binFa-ba. Ezért volt szükségünk az <function><![CDATA[operator<<]]></function>
+        túltöltésére, azaz valamelyest újradefiniálására, hogy ezt megtehessük. Ez természetesen nem a mi
+        alkotásunk, a shiftelés egy alapból létező dolog, mi csak megmondtuk, hogy számunkra hogyan is lenne
+        megfelelő a működése jelen esetben. 
+        
+      </para>
     </section>        
                 
     <section>
