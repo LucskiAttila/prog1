@@ -15,10 +15,47 @@
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/conway">https://github.com/vajkone/prog1/tree/master/conway</link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A hangyák mikor elhagyják a hangyabolyt/fészküket, hogy élelmet vagy egyéb erőforrásokat
+            talaláljanak akkor véletlenszerű irányokban indulnak keresztbe-kasul és amerre csak mennek
+            egyfajta feromon-csikot húznak. Ez több szempontból is hasznos, először is, hogyha élelmet
+            találnak, azt felveszik és már indulnak is vissza követve a saját feromon csikjukat ezáltal 
+            könnyen hazatalálva akár egy akadályokkal teli környezetben is. De nem
+            csak ők egyedül használják a saját feromon-útjukat, hanem mikor visszaérnek a bolyba, akkor
+            informálják a többieket, hogy amerre voltam, ott bizony élelmet találtam. De hogyan kommunikálják
+            ezt le a hangyák? Nos természetesen ezt is feromon csikokkal. Ugyanis visszafele is húzza a 
+            csikot, megerősitve azt. 
+            
+            <figure>
+          <title>Hangyák ételt keresnek</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../conway/antDiagram1.png" format="PNG" scale="100"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+          <figure>
+            <title>'A' hangya ételt talál</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/antDiagram2.png" format="PNG" scale="100"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+
+          <figure>
+            <title>Többek is csatlakoznak az erős feromon útra</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/antDiagram4.png" format="PNG" scale="100"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+
+
         </para>            
     </section>        
     <section>
