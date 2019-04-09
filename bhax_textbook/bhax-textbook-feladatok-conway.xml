@@ -32,7 +32,7 @@
           <title>Hangyák ételt keresnek</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../conway/antDiagram1.png" format="PNG" scale="100"/>
+              <imagedata fileref="../conway/antDiagram1.png" format="PNG" scale="80"/>
             </imageobject>
           </mediaobject>
         </figure>
@@ -41,7 +41,7 @@
             <title>'A' hangya ételt talál</title>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="../conway/antDiagram2.png" format="PNG" scale="100"/>
+                <imagedata fileref="../conway/antDiagram2.png" format="PNG" scale="80"/>
               </imageobject>
             </mediaobject>
           </figure>
@@ -50,13 +50,66 @@
             <title>Többek is csatlakoznak az erős feromon útra</title>
             <mediaobject>
               <imageobject>
-                <imagedata fileref="../conway/antDiagram4.png" format="PNG" scale="100"/>
+                <imagedata fileref="../conway/antDiagram4.png" format="PNG" scale="80"/>
               </imageobject>
             </mediaobject>
           </figure>
 
 
-        </para>            
+        </para>
+
+      <para>
+        
+        Nézzük hát meg hogy ez a viselkedés hogyan valósitható meg egy programban. 
+        Az elv nagyjából ugyanaz, a program ablakját cellákra osztjuk és hangyákat inditunk el 
+        középről, a bolyból. A hangyák egy idő után elkezdenek azon hangyák felé tendálni akiknek
+        erősebb a feromon csikjuk. Elhagyva a sajátukat, amiknek erőssége pedig gyengül. 
+        
+        <figure>
+            <title>A hangyák útnak indulnak</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/antsim1.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        
+        <figure>
+            <title>Erősebb és gyengébb útvonalak alakulnak ki</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/antsim2.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        
+
+        
+        
+      </para>
+
+      <para>
+        
+  A program több összetevőből is, az alábbi ábra jól mutatja, hogy mik is működtetik a programot:
+  <figure>
+            <title>Program összetevők</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/hangyaboly.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        
+        
+        
+        
+
+
+
+        
+
+      
+      </para>
     </section>        
     <section>
         <title>Java életjáték</title>
@@ -68,11 +121,76 @@
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/conway/Sejtautomata">https://github.com/vajkone/prog1/tree/master/conway/Sejtautomata</link>
+            Megoldás forrása: <link xlink:href="https://www.tankonyvtar.hu/hu/tartalom/tkt/javat-tanitok-javat/apb.html?fbclid=IwAR0RBi-3yoZUEA6icQtr8kgtDO_Jg7Yk93fTnrdCr6R2zgI52FlEgqZikjY">https://www.tankonyvtar.hu/hu/tartalom/tkt/javat-tanitok-javat/apb.html?fbclid=IwAR0RBi-3yoZUEA6icQtr8kgtDO_Jg7Yk93fTnrdCr6R2zgI52FlEgqZikjY</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Az életjáték, eredeti nevén Game of life egy sejtautomata, melyet John Horton Conway
+            dolgozott ki 1970-ben. A játék valójában nem igényel játékost, csak annyiban, hogy valaki
+            elinditsa és/vagy kezdeti paraméterekkel ellássa. Ezután figyelemmel lehet követni, hogyan
+            hogyan fejlődnek a sejtek. De mi alapján történik a fejlődés? Nézzük meg a játék szabályait:
+        </para>
+      <para>
+        
+  A játékban a sejteket négyzetek ábrázolják, melyek kitöltik az egész játékteret. Ezek a sejtek két
+  állapotban létezhetnek: élő vagy halott. A fejlődés a sejtek és nyolc szomszédja (horizonális 3, 
+  vertikális 3, átlós 2) közti interakció eredménye, 4 előre meghatározott szabály alapján. Ezek a szabályok a következők:
+  
+      </para>
+      <para>
+        
+        Bármely élő sejt, melynek kevesebb mint két élő szomszédja van, meghal. 
+      </para>
+    <para>
+        
+        Bármely élő sejt, melynek kettő vagy több élő szomszédja van, tovább él a következő generációba. 
+      </para>
+    <para>
+        Bármely élő sejt, melynek háromtól több szomszédja van, meghal.
+      </para>
+    <para>
+        
+        Bármely halott sejt, melynek pontosan három szomszédja van élővé válik.
+      </para>
+      <para>
+        A fent emlitett generáció jelentése nem más mint egy úgynevezett tick. Mind a sejtek halála
+        és születése egyszerre, egy tick-nyi idő alatt történik. Nézzünk pár pillanatképet a programból:
+        
+      </para>
+      <para>
+        <figure>
+            <title>Sejtautomata</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/Sejtautomata/sejtautomata1.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        
+      <figure>
+            <title>Sejtautomata 2</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/Sejtautomata/sejtautomata5.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        
+      </para>
+      <para>
+        A sejtek bizonyos kezdeti pozicióit prezicen megadva igazán érdekes sejtmozgásokat érhetünk el. 
+        A leglátványosabbaknak nevei is vannak, ilyen például a sikló-kilövő is, amely folyamatosan 
+        "siklórepülőket" reptet. Ezt valahogy igy kell elképzelni: 
+        
+        <figure>
+            <title>Sikló</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/Sejtautomata/glider.jpg" format="JPG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+      </para>
     </section>        
     <section>
         <title>Qt C++ életjáték</title>
@@ -83,11 +201,51 @@
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása: <link xlink:href="https://github.com/vajkone/prog1/tree/master/conway/sejtauto">https://github.com/vajkone/prog1/tree/master/conway/sejtauto</link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Az élet játékának szabályai ugyanazok, egyedül a környezet változott. 
+            Futtatáshoz: sudo apt-get install libqt4-dev, qmake Sejtauto.pro, make, ./Sejtauto
+            Ime a siklókilövő megvalósitása: 
+            
+        </para>
+      <para>
+        <figure>
+            <title>Siklókilövés</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/sejtauto/sejtautoGlider.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+      
+    Egy idő után viszont nálam a dolog felbomlott:
+    
+    <figure>
+            <title>Siklókilövés 2</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/sejtauto/sejtaautoGlider2.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+      
+    
+      </para>
+      <para>
+        Egy kis érdekesség a végére: A Google-be bepötyögve, hogy 'Conway's Game of Life' az 
+        oldalon elindul a játék az oldal szélén :) 
+        
+        <figure>
+            <title>Siklókilövés</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../conway/sejtauto/gol.PNG" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
+        
+      </para>
     </section>        
     <section>
         <title>BrainB Benchmark</title>
