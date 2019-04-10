@@ -257,11 +257,21 @@
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>               
+            Megoldás forrása: <link xlink:href="https://github.com/nbatfai/esport-talent-search">https://github.com/nbatfai/esport-talent-search</link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Felülnézetes játékoknál, ahol egy adott karaktert irányitunk (pl Mobák: Lol, Dota) gyakran
+            megesik, hogy a játszma egy pontján, például egy teamfight-ban 10 ember karaktere sűrűsödik
+            egy képernyőnyi területre és kezd el egyszerre mindenféle villogó, robbanó, reppenő, suhanó
+            stb képességet használni, hogy az ellenfél csapatot legyőzze. Ebben a forgatagban fontos, hogy
+            tisztában legyen a játékos a saját karakterének poziciójánál, ugyanis a jó pozicionálás 
+            döntő fontosságú lehet egy-egy ütközet kimenetelében.
+            
+        </para>
+      <para>
+        Ez a program azt hivatott mérni, hogy egy ilyen szituációban meddig tudnánk a karakterünket 
+        figyelemmel kisérni és ha szem elől veszitjük, akkor milyen gyorsan lelünk rá a képernyőn ismét.
+      </para>
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                
