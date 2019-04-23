@@ -11,31 +11,27 @@
             Python
         </para>
         <para>
-            Megoldás videó:
+          Megoldás videó: <link xlink:href="https://youtu.be/j7f9SkJR3oc">https://youtu.be/j7f9SkJR3oc</link>
         </para>
         <para>
             Megoldás forrása:                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
+          Az MNIST adatbázis egy hatalmas database melyben mely kézzel irott számok képeit tartalmazza.
+          Ezt a több mint 60000 képet számláló adatbázist előszeretettel használják
+          képfeldolgozó rendszereknél és gépi
+          tanulásnál, mind a betanitás mind a tesztelés során.
 
-    <section>
-        <title>Szoftmax R MNIST</title>
-        <para>
-            R            
+          <figure>
+            <title>A betanitás folyamata</title>
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="../schwarzenegger/mnist.png" format="PNG" scale="70"/>
+              </imageobject>
+            </mediaobject>
+          </figure>
         </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
+    </section>          
 
     <section>
         <title>Mély MNIST</title>
@@ -51,26 +47,10 @@
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
-    </section>        
-
-    <section>
-        <title>Deep dream</title>
-        <para>
-            Keras            
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
+    </section>             
                   
     <section>
-        <title>Robotpszichológia</title>
+        <title>Minecraft-Malmö</title>
         <para>
         </para>
         <para>
