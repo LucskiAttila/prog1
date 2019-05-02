@@ -1,22 +1,14 @@
-/* Készítette: 'Kojak' felhasználó
-    Dátum: 2014-02-24 
-
-   A megoldás hibái javítva Józan Csaba splint ellenőrzése alapján.(Sipos Ádám)
-    Dátum: 2015-02-08
-*/
-
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 
 
-static void gotoxy(int x, int y)                     //kurzor pozicionálása
+static void gotoxy(int x, int y)                    
 {
   int i;
-  for(i=0; i<y; i++) printf("\n");             //lefelé tolás
-  for(i=0; i<x; i++) printf(" ");              //jobbra tolás
-  printf("o\n");    //labda ikonja
+  for(i=0; i<y; i++) printf("\n");             
+  for(i=0; i<x; i++) printf(" ");              
+  printf("o\n");    
 
 }
 
@@ -27,12 +19,12 @@ int main(void)
   int egyx=1;
   int egyy=-1;
   int i;
-  int x=10;   //a labda kezdeti pozíciója
+  int x=10;   
   int y=20;
-  int ty[23];//magasság     // a pálya mérete
-  int tx[80];//szélesség
+  int ty[23];
+  int tx[80];
 
-  //pálya széleinek meghatározás 
+  
 
   for(i=0; i<23; i++)
        ty[i]=1;
@@ -51,7 +43,7 @@ int main(void)
   for(;;)
   {
 
-    //címsor és pozíció kijelzése
+    
     for(i=0; i<36; i++)
        printf("_");
 
@@ -64,7 +56,7 @@ int main(void)
 
 
     (void)gotoxy(x,y);
-    //printf("o\n"); Áthelyezve a gotoxy függvényve
+    
 
     x+=egyx;
     y+=egyy;
@@ -73,7 +65,7 @@ int main(void)
     egyy*=ty[y];
 
     usleep (200000);
-    (void)system("clear");
+    clear();
   }
 
 }
