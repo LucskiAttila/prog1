@@ -57,7 +57,7 @@
           <title>4 mag 100%-on</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="feladatok/batch1/feladat1/vegtelen1.png" format="PNG" scale="70"/>
+              <imagedata fileref="../feladatok/batch1/feladat1/vegtelen1.png" format="PNG" scale="70"/>
             </imageobject>
           </mediaobject>
         </figure>
