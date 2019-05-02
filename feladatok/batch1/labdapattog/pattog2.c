@@ -29,18 +29,18 @@ main ( void )
 
 	getmaxyx(ablak, my, mx);
         x = (x - 1) % mx;
-        y = (y + 1) % mx;
+        deltax = (deltax + 1) % mx;
 
-        deltay = (deltay - 1) % my;
-        deltax = (deltax + 1) % my;
+        y = (y - 1) % my;
+        deltay = (deltay + 1) % my;
 
-        //clear ();
+        clear ();
 
-        mvprintw (abs (deltay + (my - deltax)),
-                  abs (x + (mx - y)), "O");
+        mvprintw (abs (y + (my - deltay)),
+                  abs (x + (mx - deltax)), "O");
 
         refresh ();
-	clear();
+	
         usleep (200000);
 
     }
