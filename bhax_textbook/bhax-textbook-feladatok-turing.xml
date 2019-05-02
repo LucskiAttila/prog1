@@ -52,6 +52,15 @@
 
         Ezt a kódot a gcc forditó -fopenmp kiegészitéssel ellátva forditjuk, majd futtatjuk.
         Ekkor láthatjuk, hogy az összes magunk (közel vagy ténylegesen) 100%-os terhelésen fut.
+
+        <figure>
+          <title>4 mag 100%-on</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="feladatok/batch1/feladat1/vegtelen1.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
         
 
       </para>
@@ -60,8 +69,35 @@
 
     
     <para>
+      Nézzük hát, hogy hogyan érhetnénk el azt, hogy egy olyan végtelen ciklust futtatunk ami 0%-ban használja a CPU-nkat.
+      Nos, ezt a sleep() függvény segítségével fogjuk elérni. A sleep függvény ahogy neve is mutatja, altatja az adott
+      programot paraméterként megadott másodpercnyi időre. Tehát, ha egy végtelen ciklusban sleep(1)-et alkalmazunk,
+      a programunk folyamatosan aludni fog (ha csak ennyit tartalmaz a ciklus).
+<programlisting language="c">
+      <![CDATA[
+      #include <unistd.h>
+      int
+      main (){
+
+      for (;;)
+      sleep (1);
+      return 0;
+      }
       
-    </para>
+     ]]>
+    </programlisting>
+      
+      <figure>
+          <title>A programunk fut, de alszik</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="feladatok/batch1/feladat1/sleep.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+
+  </para>
 
   </section>        
         
@@ -265,7 +301,7 @@ false]]></screen>
         </para>
       <para>
         A labdapattogás nem több mint a terminálon belüli, valamilyen karakter (ha már labda akkor legyen
-        O ), xy tengelyen való eltolását jelenti. Ha a labda falhoz ér, azaz x vagy y értékünk 0 lesz,
+        O ), X Y tengelyen való eltolását jelenti. Ha a labda falhoz ér, azaz x vagy y értékünk 0 lesz,
         akkor pedig visszapattan. De honnan tudja a labda, hogy a terminálunk fala hol is van? Ebben
         segit nekunk ez a kód részlet:
         <programlisting language="c">
@@ -275,57 +311,88 @@ false]]></screen>
             ]]>
         </programlisting>
 
-        A program további részeinek magyarázatát kommentek formájában tettem meg, ezért, hogy ne ismételjem
-        önmagam, ime: 
+
         <programlisting language="c">
           <![CDATA[
           
-    int x = 0;
-    int y = 0; //ez a labdánk kiinduló poziciója
+        int x = 0;
+        int y = 0; 
 
-    int deltax = 1; //ennyivel lépünk az x tengelyen
-    int deltay = 1; //ezzel pedig az y tengelyen
-    //mindkét értéket lehet tetszés szerint változtatni 
+        int deltax = 1; 
+        int deltay = 1; 
+   
 
-    int mx; //oszlopok száma (az ablakunk szélessége)
-    int my; //sorok száma (az ablakunk hossza)
+        int mx; 
+        int my; 
+        ]]>
+        </programlisting>
 
-    for ( ;; ) { // végtelen ciklus, hogy a labdánk akár az idők végezetéig is pattoghasson
+        X és y a labdánk kiinduló poziciója lesz, deltax és deltay pedig a lépésszámot fogja meghatározni az adott tengelyeken.
+        Mx és my változók pedig az ablakunk szélességét és hosszát fogják reprezentálni (oszlopok és sorok száma az ablakunkban).
+        
+      </para>
+      <para>
+        <programlisting language="c">
+          <![CDATA[
+       
 
-        getmaxyx ( ablak, my , mx ); //itt adjuk át az ablakunk szélességét és hosszát paraméterként
-
-        mvprintw ( y, x, "O" ); //ez a függvény jeleniti meg az adott x és y koordinátában a labdánkat
-
+        for ( ;; ) { 
+        getmaxyx ( ablak, my , mx ); 
+        mvprintw ( y, x, "O" ); 
         refresh ();
-        usleep ( 100000 ); //adott mikroszekundumig altatja, azaz felfüggeszti a program futását
-        clear() //opcionális, eltünteti az előző labdát, igy az nem huz csikot
+        usleep ( 100000 ); 
+        clear() 
+        
+        ]]>
 
-        x = x + deltax; \\lépünk x-en
-        y = y + deltay; \\lépünk y-on
+        </programlisting>
 
-        if ( x>=mx-1 ) { // elerte-e a jobb oldalt?
-            deltax = deltax * -1; //akkor induljon balra
-        }
-        if ( x<=0 ) { // elerte-e a bal oldalt?
-            deltax = deltax * -1; //akkor induljon ismét jobbra
-        }
-        if ( y<=0 ) { // elerte-e a tetejet?
-            deltay = deltay * -1; //akkor menjen le
-        }
-        if ( y>=my-1 ) { // elerte-e a aljat?
-            deltay = deltay * -1; //akkor mehet fel
-        }
+        Kezdünk egy, a már korábbi programokból is ismert for ciklussal ami jól látszik hogy a végtelenségik fog futni. A
+        getmaxyx(ablak, my , mx ) függvénynek átadjuk az ablakunk hosszát és szélsességét, a mvprintw ( y, x, "O" )
+        függvény pedig y és x koordinátákra fogja rajzolni az 'O' karaktert, azaz a labdánkat.
+        Az usleep() függvény a sleep()-el ellentétben nem másodpercekre, hanem mikroszekundumnyi időre altatja a programunkat,
+        ezzel befolyásolva a labda mozgásának sebességét. A clear() függvény opcionális, ha kikommenteljük akkor a labdánk csíkot
+        húz, azaz az előző kirazjolt labdánk nem fog eltűnni.
+      </para>
 
-    }
+      <para>
 
-    return 0;
-}
+        <programlisting language="c">
+          <![CDATA[
+
+              x = x + deltax; 
+              y = y + deltay; 
+
+              if ( x>=mx-1 ) {             
+              deltax = deltax * -1;       
+              }
+              if ( x<=0 ) {                
+                  deltax = deltax * -1;    
+              }
+              if ( y<=0 ) {                
+                  deltay = deltay * -1;    
+              }
+              if ( y>=my-1 ) {             
+                  deltay = deltay * -1;    
+              }
+
+          }
+
+          return 0;
+      }
           
           
           ]]>
-          
-        </programlisting>
 
+        </programlisting>
+        Itt történik meg a pozícióváltás, deltax és deltay-nal növeljük, változtatjuk a labda következő kirajzolandó helyzetét.
+        Ezután pedig megvizsgáljuk, hogy a labda így elérte-e az ablakunk széleit (mx és my), ha igen, akkor deltax és/vagy deltay
+        előjelét megváltoztatjuk, hogy ezután, hogyha hozzádjuk őket a jelenlegi x és y pozíciókhoz, akkor ellentétes irányba 
+        menjenek mint eddig, azaz a labdánk pattanjon vissza a falról. 
+        
+        
+        
+        
 
       </para>
 
@@ -335,6 +402,8 @@ false]]></screen>
         mást mint a maradékos osztást...
         
       </para>
+      
+      
     </section>                     
 
     <section>
