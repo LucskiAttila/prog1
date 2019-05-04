@@ -25,5 +25,19 @@
                 <link xlink:href="https://arato.inf.unideb.hu/batfai.norbert/">https://arato.inf.unideb.hu/batfai.norbert/</link>
             </otheraddr>
         </address>
-    </author>    
+    </author>
+  <author>
+    <personname>
+      <surname>Vajk</surname>
+      <firstname>Garbóczy</firstname>
+    </personname>
+    <affiliation>
+      <jobtitle>hallgató</jobtitle>
+      <orgname>Debreceni Egyetem</orgname>
+      <address>
+        <email>vajkone18@gmail.com</email>
+      </address>
+    </affiliation>
+  </author>
+
 </authorgroup>

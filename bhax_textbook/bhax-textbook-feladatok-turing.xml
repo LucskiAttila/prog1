@@ -397,12 +397,45 @@ false]]></screen>
       </para>
 
       <para>
-        
+
         Az if nélküli megoldáshoz ismét a matematika csodálatos tudományát hivjuk segitségül, mégpedig nem
-        mást mint a maradékos osztást...
-        
-      </para>
+        mást mint a maradékos osztást. Ebben a megoldásunkban a for ciklusunkon belül eltávolitja a logikai vizsgálatokat és helyette
+        matekozunk. A kód valahogy így fog kinézni:
+
+
+        <programlisting language="c">
+          <![CDATA[
+
+        for ( ;; ) {
+
+        getmaxyx(ablak, my, mx);
+        x = (x - 1) % mx;
+        deltax = (deltax + 1) % mx;
+
+        y = (y - 1) % my;
+        deltay = (deltay + 1) % my;
+
+        clear ();
+
+        mvprintw (abs (y + (my - deltay)),
+                  abs (x + (mx - deltax)), "O");
+
+        refresh ();
+	
+        usleep (200000);
+
+        }
+
       
+       ]]>
+
+    </programlisting>
+        
+        Itt folyamatosan maradékos osztást végzünk az ablak szélességével és hosszával, melyek ügye a maximum értékek, tehát egészen addig amíg el 
+        nem érjük az ablak határait (tehát azokat az értékeket) addig ugyanazt kapjuk amit elosztottunk, de közben okosan léptetjük is ha már ott 
+        vagyunk. Ha elérjük az ablak szélét akkor az osztásunk 1-et ad vissza (mert ügye már inkrementáljuk is egyből) és ilyenkor a labdánk
+        visszapattan. 
+      </para>
       
     </section>                     
 
@@ -422,16 +455,88 @@ false]]></screen>
             Tanulságok, tapasztalatok, magyarázat... 
         </para>
       <para>
-        
-        Először is: mi is az a szóhossz az informatikai zsargonban? Ez nem más mint a számitógépünk 
+
+        Először is: mi is az a szóhossz az informatikai zsargonban? Ez nem más mint a számitógépünk
         által, adatok ábrázolása és átvitele közben alkalmazott elemi egység. A BogoMips pedig egy Linus
-        Torvalds által irt program mely a CPU-nk gyorsaságát hivatott mérni. Persze ez nem ér fel egy 
+        Torvalds által irt program mely a CPU-nk gyorsaságát hivatott mérni. Persze ez nem ér fel egy
         CPU stretch test-tel, de diákok számára kiváló versenyt biztosithat, hogy kinek fut le gyorsabban.
         A BogoMips-ből átemeljük a while ciklust, melyben a másodpercenkénti loop-ot egy másik változóval
         helyettesitjuk. Ez a változó fogja mérni a bitek számát. A tényleges szóhosszt bitshifteléssel
-        fogjuk kideriteni. Addig lépkedünk balra, amig csupa nullába nem botlunk, eközben a lépseinket
-        számolja a már korábban emlitett változónk, amit a while ciklusból kilépve kiirunk és megkapjuk
-        hogy hány bites a szóhossz a gépünkben. 
+        fogjuk kideriteni. Mindez a programunkban így fog kinézni:
+
+
+        <programlisting language="c">
+          <![CDATA[
+          
+          int h = 0;
+          int n = 0x01;
+          do
+            ++h;
+          while (n <<= 1);
+          
+          
+          
+            ]]>
+
+        </programlisting>
+
+
+
+        A while ciklusból kilépve, tehát amikor az n csupa nullából áll, pedig kiirjuk a h-t, azaz hogy hányszor kellett az egyest  balra léptetni 
+        a bináris formában, ami ha minden jól ment 32 lesz.
+      </para>
+      
+      Ezek után vessünk egy pillantást a Linus Torvalds féle BogoMIPS-re. 
+      <para>
+        
+        
+        
+        <programlisting language="c">
+          <![CDATA[
+
+        void delay (unsigned long long  loops)
+        {
+        unsigned long long i;
+        for ( i=0; i<loops; i++)
+		        ;
+        }
+
+        int main(void)
+        {
+	        unsigned long long loops_per_sec = 1;
+	        unsigned long long ticks;
+	
+	        printf("Calibrating delay loop..");
+	        fflush(stdout;)
+	
+	        while (loops_per_sec <<= 1 )
+                {
+                    ticks = clock();
+                    delay (loops_per_sec);
+                    ticks = clock() - ticks;
+
+                    printf ("%llu %llu\n", ticks, loops_per_sec);
+
+                    if (ticks >= CLOCKS_PER_SEC)
+                    {
+                        loops_per_sec = (loops_per_sec / ticks) * CLOCKS_PER_SEC;
+
+                        printf ("ok - %llu.%02llu BogoMIPS\n", loops_per_sec/500000,
+                        (loops_per_sec/5000) % 100);
+                        printf("ok - %lld %f BogoMIPS\n", loops_per_sec, log(loops_per_sec));
+                        return 0;
+                    }
+                }
+
+         printf ("failed\n");
+         return -1;
+         }
+
+   
+            ]]>
+
+</programlisting>
+
       </para>
     </section>                     
 
@@ -490,7 +595,7 @@ false]]></screen>
         A Brun tétel és a Brun szám Viggo Brun, norvég fizikus nevéhez kötődik. A tétel azt mondja ki
         hogy az ikerprimek reciprokösszege egy bizonyos összeghez konvergál, azaz azt tetszőlegesen
         megközeliti, de el nem éri. Ezt a számot nevezik Brun konstansnak. Egyelőre csak becslések léteznek
-        arról, hogy ez a szám mekkora is, de a szakemberek valahol 1,9 és 2,1754 közé tippelik.
+        arról, hogy ez a szám mekkora is, de a szakemberek valahova 1,9 és 2,1754 közé tippelik.
 
       </para>
     </section>
