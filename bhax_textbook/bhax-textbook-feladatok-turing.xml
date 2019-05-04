@@ -454,7 +454,8 @@ false]]></screen>
         <para>
             Tanulságok, tapasztalatok, magyarázat... 
         </para>
-      <para>
+      
+        <para>
 
         Először is: mi is az a szóhossz az informatikai zsargonban? Ez nem más mint a számitógépünk
         által, adatok ábrázolása és átvitele közben alkalmazott elemi egység. A BogoMips pedig egy Linus
@@ -485,12 +486,12 @@ false]]></screen>
         A while ciklusból kilépve, tehát amikor az n csupa nullából áll, pedig kiirjuk a h-t, azaz hogy hányszor kellett az egyest  balra léptetni 
         a bináris formában, ami ha minden jól ment 32 lesz.
       </para>
-      
-      Ezek után vessünk egy pillantást a Linus Torvalds féle BogoMIPS-re. 
+
+
       <para>
-        
-        
-        
+        Ezek után vessünk egy pillantást a Linus Torvalds féle BogoMIPS-re.
+
+
         <programlisting language="c">
           <![CDATA[
 
