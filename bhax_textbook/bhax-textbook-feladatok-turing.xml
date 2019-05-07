@@ -579,6 +579,7 @@ false]]></screen>
         az oldalak tényleg csak olyan oldalra fognak mutatni, akit arra érdemesnek tartanak.
         
       </para>
+      
     </section>
 
     <section xml:id="Brun">
@@ -598,6 +599,29 @@ false]]></screen>
         megközeliti, de el nem éri. Ezt a számot nevezik Brun konstansnak. Egyelőre csak becslések léteznek
         arról, hogy ez a szám mekkora is, de a szakemberek valahova 1,9 és 2,1754 közé tippelik.
 
+      </para>
+
+    Az R-ben megírt program így fog kinézni: 
+      <para>
+
+        <programlisting language="c">
+          <![CDATA[
+
+       stp <- function(x){ 
+       primes = primes(x)
+       diff = primes[2:length(primes)]-primes[1:length(primes)-1] 
+       idx = which(diff==2) 
+       t1primes = primes[idx] 
+       t2primes = primes[idx]+2 
+       rt1plust2 = 1/t1primes+1/t2primes 
+       return(sum(rt1plust2)) 
+       }
+           ]]>
+
+      </programlisting>
+        Az x paraméterként átadott számig a program eltárolja az összes primszámot a primes vektorban, ezután megkeressük ikerprímeket, majd vesszük
+        ezen primek reciprokát és ezeket összeadjuk. 
+        
       </para>
     </section>
     
@@ -619,14 +643,21 @@ false]]></screen>
         Kezdjük azzal, hogy mi is az a Monty Hall probléma?
       </para>
       <para>
-
-        Ön játékos egy televíziós műsorban, és három ajtó közül kell választania.  
-        Az egyik mögött rejlik a főnyeremény, egy autó, a másik kettő mögött pedig nincs semmi.
-        Ön a második ajtót választja. Ekkor a műsorvezető kinyitja a másik két ajtó közül az egyiket, 
-        mondjuk a harmadikat, ami üres. Majd felteszi a kérdést, hogy szeretne-e változtatni és 
-        esetleg  másik ajtót választani?
+        
+        Tegyük fel, hogy játékosok vagyunk egy televíziós műsorban, ahol egy autót nyerhetünk, ha jól választunk.
+        Három ajtó közül kell választanunk, az egyik mögött ott rejlik a nyeremény, a másik kettő mögött semmi. Választunk
+        egy ajtót, a műsorvezető kinyit egy másik ajtót amiről ő tudja hogy üres, majd felajánja, hogy ha szeretnénk, akkor változtathatunk 
+        eredeti választásunkon. Mit érdemes ilyenkor tenni? Nos tömören ez volna a Monty Hall probléma.
+        
       </para>
       <para>
+        
+        A válasz nem feltétlen magától értetődő, de  fáradhatatlan matematikusok izzadtságos munkájának és szimulációk milliárdjainak hála 
+        mára már tudjuk, hogy igen, megéri változtatni a kezdeti tippünkön ebben az esetben. A magyarázat pedig a következő: kezdetben, ügye egyértelmű
+        hogy 1/3-ad esélyünk van eltalálni a nyereményt rejtő ajtót. A játékvezető ezután kinyit egy ajtót mely mögött semmi nem rejlik. Ha eltaláltuk
+        elsőre(1/3 esély) és váltunk, akkor nem nyerünk, viszont ha maradunk eredeti döntésünknél akkor miénk a főnyeremény. Viszont ha elsőre nem jól tippeltünk
+        (aminek 2/3 az esélye) és váltunk miután a másik üres ajtót kinyították, akkor nyerünk. Magyarul azért éri meg változtatni, mert az elején
+        2/3-ad (66,6%) az esélye, hogy rosszat választunk. 
         
       </para>
     </section>

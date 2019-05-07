@@ -182,7 +182,7 @@
         </programlisting>
     
     Ezt követi a lexer rész, ahol a lexikális szabályokat adjuk meg, jelen esetben, hogy növelje a
-    szamok_szamat ha a bemenet szám, és hagyja figyelmen kivül ha a bemenet bármilyen betű, de még
+    szamok_szama-t ha a bemenet szám, és hagyja figyelmen kivül ha a bemenet bármilyen betű, de még
     akkor is ha a betű vagy betűk sorozata után áll egy szám, azaz csak akkor számol ha a bemenet számmal
     kezdődik. 
     

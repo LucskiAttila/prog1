@@ -16,20 +16,72 @@
         <para>
             Megoldás forrása:                
         </para>
-    </section>        
+
+      <para>
+        A Lisp a Fortran után a második legrégebbi magasszintű programozási nyelv. Magát a nyelvet John McCharty alkotta meg 1958-ban az MIT-n. 
+        A név a LISt Processor szavak összevonásából ered és mutatja azt is, hogy a nyelv fő adatstruktúrája a lista. Ugyan a nyelv maga nagyon régi
+        és gondolhatnánk hogy elavult is, de ez nem teljesen igaz. A mai napig vannak területek ahol használják. Mi most például a jól ismert GIMP
+        képszerkesztő programban script írásához fogjuk felhasználni. Van egy-két dolog ami elsőre furcsának fog tünni a Lisp használatánál a mai
+        programnyelvekhez képest. Az egyik ilyen furcsaság, hogy a műveleteket prefix alakban kell megadni, azaz ha 3-t és 4-t összeszeretnénk adni
+        azt így tennénk: (+ 3 4).
         
-    <section>
-        <title>Weizenbaum Eliza programja</title>
-        <para>
-            Éleszd fel Weizenbaum Eliza programját!
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
+      </para>
+
+      <para>
+        
+        Az iteratív megoldáshoz egy ciklust fogunk használni. Ugyan nem for és nem és while a neve Lisp-ben hanem szimplán loop, de attól a működési
+        elv ugyanaz. Nézzük is hogyan néz ki: 
+        
+        <programlisting language="c++">
+          <![CDATA[
+          
+          (define (fakt x)
+              (if (= x 0) 
+                (set! x 1)
+          )
+          (let loop ((variable (- x 1)))
+          (if (> variable 1)                               
+              (begin
+                  (set! x (* x variable))
+                  (loop (- variable 1) )
+              )
+             )
+            )
+           n
+          )
+
+          
+          ]]>
+        </programlisting>
+        Definiáljuk a fakt függvényünket, melynek átadunk majd egy számot. Ha ez a szám 0, akkor az eredményünk 1 lesz, ugyanis tudjuk hogy 0!=1. 
+        Ha ez az ellenőrzés megtörtént, létrehozunk egy változót a let paranccsal a paraméterként átadott szám alapján egyel kevesebb értékkel, 
+        majd ha az így kapott változónk nagyobb mint 1, akkor indítunk egy ciklust, hogy a változónkat és az eredeti számot összeszorozza és az eredeti
+        szám értékét a szorzat értékére állítjuk a set! paranncsal, majd a változónkat csökkentjük eggyel és az x-et ismét szorozzuk az új változóval,
+        mindezt egészen addig amíg a változónk 1 nem lesz. 
+        
+        
+      </para>
+
+      <para>
+        Ugyanez rekurzív megvalósítással: 
+        <programlisting language="c++">
+          <![CDATA[
+          
+          (define (fakt n)
+              (if (< n 1) 1
+                (* n (fakt(- n 1)))))
+          
+          
+          ]]>
+        </programlisting>
+        Előre szintén ellenőrzés, hogy n kisebb-e mint 1, mert akkor az eredmény 1, amúgy meg n-t szorozzuk meg ugyanezzel a függvénnyel csak a paramétere
+        most legyen n-1, azaz egyel kisebb.
+        
+      </para>
+      
+      
     </section>        
+          
 
     <section>
         <title>Gimp Scheme Script-fu: króm effekt</title>
@@ -65,32 +117,6 @@
         </para>            
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-    <section>
-        <title>Lambda</title>
-        <para>
-            Hasonlítsd össze a következő programokat!
-        </para>
-        <para>
-            Megoldás videó: <link xlink:href=""></link>      
-        </para>
-        <para>
-            Megoldás forrása: <link xlink:href=""></link>               
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
-
-    <section>
-        <title>Omega</title>
-        <para>
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-    </section>        
+    
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 </chapter>                
