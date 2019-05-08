@@ -29,7 +29,7 @@
 
       <para>
         
-        Az iteratív megoldáshoz egy ciklust fogunk használni. Ugyan nem for és nem és while a neve Lisp-ben hanem szimplán loop, de attól a működési
+        Az iteratív megoldáshoz egy ciklust fogunk használni. Ugyan nem for és nem és while a neve Lisp-ben, de attól a működési
         elv ugyanaz. Nézzük is hogyan néz ki: 
         
         <programlisting language="c++">
@@ -113,8 +113,177 @@
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/GIMP_Lisp/Mandala">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/GIMP_Lisp/Mandala</link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+
+        A mandala egy spirituális szimbólum, elsősorban az indiai vallásokban; a hinduizmusban
+        és buddhizmusban találkozhatunk vele és leggyakrabban az univerzumot reprezentálja. 
+        A szó eredeti szanszkrit jelentése kör, korong, körszelet. Ahogy neve is mutatja a mandala
+        mindig körkörösen ábrázol valamit, ami kötődik a valláshoz, meditációhoz, nyugalomhoz.
+        Mi most kicsit elrugaszkodunk ezektől a hagyományos eszméktől és a nevünket fogjuk egy mandalában
+        kiirni. 
+        
+        </para>
+
+      <para>
+        GIMP-ben amit menüből kattintások révén elérhetünk, azokat gyakran meg tudjuk irni scriptként is,
+        például, hogy képet hozunk létre,
+        a képhez layert adunk, szineket állitunk, szöveget készitünk majd a szöveget forgatjuk.
+        Szerencsére ezeket a függvényeket nem kell nekünk elkésziteni, csak implementálnunk kell őket, hiszen a Script-fu
+        eljárásböngészőben több mint 1200 függvény között válogathatunk.
+
+
+        <figure>
+          <title>Eljárásböngésző</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../chaitin/gimp.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+      </para>
+
+      <para>
+
+        Nézzük át a script egyes részeit:
+      </para>
+      <para>
+        <programlisting language="lisp">
+          <![CDATA[
+(define (script-fu-bhax-mandala text text2 font fontsize width height color gradient)
+(let*
+    (
+        (image (car (gimp-image-new width height 0)))
+        (layer (car (gimp-layer-new image width height RGB-IMAGE "bg" 100 LAYER-MODE-NORMAL-LEGACY)))
+        (textfs)
+        (text-layer)
+        (text-width (text-width text font fontsize))
+        ;;;
+        (text2-width (car (text-wh text2 font fontsize)))
+        (text2-height (elem 2 (text-wh text2 font fontsize)))
+        ;;;
+        (textfs-width)
+        (textfs-height)
+        (gradient-layer)
+    )
+]]>
+        </programlisting>
+
+        Azt már tudjuk, hogy a let-tel tudunk lokális változókat létrehozni. Ilyen változó lesz példul
+        az image, amiben magát a képet tároljuk majd vagy egyes layer-ek.
+
+      </para>
+      <para>
+        
+        <programlisting language="lisp">
+          <![CDATA[
+          
+    (gimp-context-set-foreground '(0 255 0))
+    (gimp-drawable-fill layer FILL-FOREGROUND)
+    (gimp-image-undo-disable image)
+
+
+          
+        ]]>
+        </programlisting>
+        A hátterünknek valamilyen RGB szint adunk (jelenleg zöld), amivel feltöltjük a háttér layert.
+      </para>
+      <para>
+        <programlisting language="lisp">
+          <![CDATA[
+    (set! textfs (car (gimp-text-layer-new image text font fontsize PIXELS)))
+    (gimp-image-insert-layer image textfs 0 -1)
+    (gimp-layer-set-offsets textfs (- (/ width 2) (/ text-width 2))  (/ height 2))
+    (gimp-layer-resize-to-image-size textfs)
+          
+        ]]>
+        </programlisting>
+
+        A kivánt szöveget egy új layerként a képhez adjuk, offsetet adunk hozzá és méretezzük a kép
+        méretei alapján.
+
+        <programlisting language="lisp">
+          <![CDATA[
+        (set! text-layer (car (gimp-layer-new-from-drawable textfs image)))
+    (gimp-image-insert-layer image text-layer 0 -1)
+    (gimp-item-transform-rotate-simple text-layer ROTATE-180 TRUE 0 0)
+    (set! textfs (car(gimp-image-merge-down image text-layer CLIP-TO-BOTTOM-LAYER)))
+
+    (set! text-layer (car (gimp-layer-new-from-drawable textfs image)))
+    (gimp-image-insert-layer image text-layer 0 -1)
+    (gimp-item-transform-rotate text-layer (/ *pi* 2) TRUE 0 0)
+    (set! textfs (car(gimp-image-merge-down image text-layer CLIP-TO-BOTTOM-LAYER)))
+
+    (set! text-layer (car (gimp-layer-new-from-drawable textfs image)))
+    (gimp-image-insert-layer image text-layer 0 -1)
+    (gimp-item-transform-rotate text-layer (/ *pi* 4) TRUE 0 0)
+    (set! textfs (car(gimp-image-merge-down image text-layer CLIP-TO-BOTTOM-LAYER)))
+    
+    (set! text-layer (car (gimp-layer-new-from-drawable textfs image)))
+    (gimp-image-insert-layer image text-layer 0 -1)
+    (gimp-item-transform-rotate text-layer (/ *pi* 6) TRUE 0 0)
+    (set! textfs (car(gimp-image-merge-down image text-layer CLIP-TO-BOTTOM-LAYER)))
+
+          
+        ]]>
+        </programlisting>
+
+        Itt forgatjuk a bevitt szöveget, de csak egy másolatát mert az eredetit megtartjuk és
+        a forgatott szöveget ugyanarra a layerre rakjuk amin az eredeti szöveg van, azaz egybeolvasztjuk őket.
+        Ezt 4-szer tesszük meg.
+
+      </para>
+      <para>
+
+        <programlisting language="lisp">
+          <![CDATA[
+    (gimp-image-select-ellipse image CHANNEL-OP-REPLACE (- (- (/ width 2) (/ textfs-width 2)) 18) 
+        (- (- (/ height 2) (/ textfs-height 2)) 18) (+ textfs-width 36) (+ textfs-height 36))
+	(plug-in-sel2path RUN-NONINTERACTIVE image textfs)
+        
+    (gimp-context-set-brush-size 22)
+    (gimp-edit-stroke textfs)
+]]>
+        </programlisting>
+
+        Ellipszis alakú kijelölést rakunk a képünk köre és a kijelölést a választott szinnel
+        körbefestjük.
+
+      </para>
+      <para>
+
+
+        <programlisting language="lisp">
+          <![CDATA[
+          
+    (set! textfs (car (gimp-text-layer-new image text2 font fontsize PIXELS)))
+    (gimp-image-insert-layer image textfs 0 -1)
+    (gimp-message (number->string text2-height))
+    (gimp-layer-set-offsets textfs (- (/ width 2) (/ text2-width 2)) (- (/ height 2) (/ text2-height 2)))
+		
+    ;(gimp-selection-none image)
+    ;(gimp-image-flatten image)
+
+
+          
+    (gimp-display-new image)
+    (gimp-image-clean-all image)
+
+]]>
+        </programlisting>
+
+        Végül megjelenitjük a mandalánkat.
+
+
+        <figure>
+          <title>Saját mandalám</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../chaitin/vajkmandala.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+      </para>
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     
