@@ -136,7 +136,7 @@
           <title>Eljárásböngésző</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../chaitin/gimp.png" format="PNG" scale="70"/>
+              <imagedata fileref="../chaitin/gimp.PNG" format="PNG" scale="100"/>
             </imageobject>
           </mediaobject>
         </figure>
@@ -285,7 +285,7 @@
           <title>Saját mandalám</title>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="../chaitin/vajkmandala.png" format="PNG" scale="70"/>
+              <imagedata fileref="../chaitin/vajkmandala.png" format="PNG" scale="110"/>
             </imageobject>
           </mediaobject>
         </figure>

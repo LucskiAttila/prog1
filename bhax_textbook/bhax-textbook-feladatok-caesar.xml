@@ -681,6 +681,17 @@
       
     
     <para>
+      
+      Ahogy a cim is mutatja C nyelvről váltunk C++-ra. Azért is fontos megjegyezni, hogy váltunk mert
+      a könyv maga is gyakran a C-hez viszonyitva mutatja be a C++ nyelvet és azt, hogy az hol és hogyan
+      változtat és javit rajta. Vitathatatlan, hogy a C++ előrelépés a C-hez képest, ahogy azt neve is
+      viccesen mutatja, C csak inkrementálva. A C++ olyan változtatásokat vezet be mint az osztályok, ezért
+      a C++ már egy objektum oriántált nyelv lesz. Megjelenik a boolean változó (true, false), melyet eddig
+      ügye csak számok reprezentáltak. A könyv tárgyalja továbbá a refernciával történő paraméterátadást, 
+      ahol a függvényen belül változtathatunk egy külső változó értékén. De szó esik a "Rule of 3" és "Rule
+      of 5" -ról is mely szabályok az erőforrásgazdálkodásra vonatkoznak. A Rule of 3 például azt mondja ki
+      hogy ha a destructor, copy constructor vagy copy assignment operator valamelyikét tartalmazza egy osztály
+      akkor explicit módon mind a hármat érdemes definiálni.
 
     </para>
     
