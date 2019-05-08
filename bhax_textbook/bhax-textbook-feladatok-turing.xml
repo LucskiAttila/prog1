@@ -601,9 +601,9 @@ false]]></screen>
 
       </para>
 
-    Az R-ben megírt program így fog kinézni: 
+    
       <para>
-
+      Az R-ben megírt program így fog kinézni: 
         <programlisting language="c">
           <![CDATA[
 

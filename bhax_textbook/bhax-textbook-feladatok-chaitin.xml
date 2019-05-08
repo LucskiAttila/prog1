@@ -32,7 +32,7 @@
         Az iteratív megoldáshoz egy ciklust fogunk használni. Ugyan nem for és nem és while a neve Lisp-ben, de attól a működési
         elv ugyanaz. Nézzük is hogyan néz ki: 
         
-        <programlisting language="c++">
+        <programlisting language="lisp">
           <![CDATA[
           
           (define (fakt x)
@@ -74,6 +74,7 @@
           
           ]]>
         </programlisting>
+        
         Előre szintén ellenőrzés, hogy n kisebb-e mint 1, mert akkor az eredmény 1, amúgy meg n-t szorozzuk meg ugyanezzel a függvénnyel csak a paramétere
         most legyen n-1, azaz egyel kisebb.
         
@@ -187,6 +188,7 @@
         </programlisting>
         A hátterünknek valamilyen RGB szint adunk (jelenleg zöld), amivel feltöltjük a háttér layert.
       </para>
+
       <para>
         <programlisting language="lisp">
           <![CDATA[
@@ -198,8 +200,13 @@
         ]]>
         </programlisting>
 
+
+
         A kivánt szöveget egy új layerként a képhez adjuk, offsetet adunk hozzá és méretezzük a kép
         méretei alapján.
+
+      </para>
+      <para>
 
         <programlisting language="lisp">
           <![CDATA[
@@ -284,6 +291,7 @@
         </figure>
 
       </para>
+      
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     
