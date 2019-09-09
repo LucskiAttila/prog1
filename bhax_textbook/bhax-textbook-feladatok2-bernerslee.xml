@@ -1,45 +1,29 @@
 <chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
     <info>
-        <title>Helló, Calvin!</title>
+        <title>Helló, Berners-Lee!</title>
         <keywordset>
             <keyword/>
         </keywordset>
     </info>
 
-  <section>
-    <title>MNIST</title>
-    <para>
-    </para>
+    <section>
+        <title>
+          Java és C++ összehasonlítása
+        </title>
+        <para>
+          C++: Benedek Zoltán, Levendovszky Tihamér Szoftverfejlesztés C++ nyelven
+          Java: Nyékyné Dr. Gaizler Judit et al. Java 2 útikalauz programozóknak 5.0 I-II.
+        </para>
+        
+    </section>        
 
-  </section>
-
-  <section>
-    <title>Deep MNIST</title>
-    <para>
-    </para>
-
-  </section>
-
-
-  <section>
-    <title>Android telefonra a TF objektum detektálója</title>
-    <para>
-    </para>
-
-  </section>
-
-  <section>
-    <title>SMNIST for Machines</title>
-    <para>
-    </para>
-
-  </section>
-
-  <section>
-    <title>Minecraft MALMO-s példa</title>
-    <para>
-    </para>
-
-  </section>
+    <section>
+        <title></title>
+        <para>
+          Python: Forstner Bertalan, Ekler Péter, Kelényi Imre: Bevezetés a mobilprogramozásba. (35-51. oldalak)
+        </para>
+        
+    </section>        
+        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

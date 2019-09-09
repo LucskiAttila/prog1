@@ -6,36 +6,50 @@
         </keywordset>
     </info>
 
-    <section>
-        <title>A BPP algoritmus Java megvalósítása</title>
-        <para>
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
+    
 
-    <section>
-        <title>Java osztályok a Pi-ben</title>
-        <para>
-            Az előző feladat kódját fejleszd tovább: vizsgáld, hogy Vannak-e Java osztályok a Pi hexadecimális kifejtésében!
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
-        
+  <section>
+    <title>JDK osztályok</title>
+    <para>
+    </para>
+
+  </section>
+  
+
+
+  <section>
+    <title>Másoló-mozgató szemantika</title>
+    <para>
+    </para>
+
+  </section>
+
+
+
+
+  <section>
+    <title>Hibásan implementált RSA törése</title>
+    <para>
+    </para>
+
+  </section>
+
+
+
+  <section>
+    <title>Változó argumentumszámú ctor</title>
+    <para>
+    </para>
+
+  </section>
+  
+
+
+  <section>
+    <title>Összefoglaló</title>
+    <para>
+    </para>
+
+  </section>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

@@ -7,35 +7,39 @@
     </info>
 
     <section>
-        <title>A BPP algoritmus Java megvalósítása</title>
+        <title>Reverse engineering UML osztálydiagram</title>
         <para>
         </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
-
-    <section>
-        <title>Java osztályok a Pi-ben</title>
-        <para>
-            Az előző feladat kódját fejleszd tovább: vizsgáld, hogy Vannak-e Java osztályok a Pi hexadecimális kifejtésében!
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+    </section>
+  <section>
+    <title>Forward engineering UML osztálydiagram</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>Egy esettan</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>BPMN</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>TeX UML</title>
+    <para>
+    </para>
+
+  </section>
+
+
+
 </chapter>                

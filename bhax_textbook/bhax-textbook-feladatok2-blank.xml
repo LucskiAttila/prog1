@@ -7,35 +7,40 @@
     </info>
 
     <section>
-        <title>Blank section</title>
+        <title>FUTURE tevékenység editor</title>
         <para>
         </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
+       
+    </section>
 
-    <section>
-        <title>Java osztályok a Pi-ben</title>
-        <para>
-            Az előző feladat kódját fejleszd tovább: vizsgáld, hogy Vannak-e Java osztályok a Pi hexadecimális kifejtésében!
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
-        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+  <section>
+    <title>OOCWC Boost ASIO hálózatkezelése</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>SamuCam</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>BrainB</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>OSM térképre rajzolása</title>
+    <para>
+    </para>
+
+  </section>
+
+
+
 </chapter>                

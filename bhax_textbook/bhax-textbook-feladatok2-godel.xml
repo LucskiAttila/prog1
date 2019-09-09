@@ -7,35 +7,46 @@
     </info>
 
     <section>
-        <title>A BPP algoritmus Java megvalósítása</title>
+        <title>Gengszterek</title>
         <para>
         </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
-
-    <section>
-        <title>Java osztályok a Pi-ben</title>
-        <para>
-            Az előző feladat kódját fejleszd tovább: vizsgáld, hogy Vannak-e Java osztályok a Pi hexadecimális kifejtésében!
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
         
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+    </section>
+
+  <section>
+    <title>C++11 Custom Allocator</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>STL map érték szerinti rendezése</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>Alternatív Tabella rendezése</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>Prolog családfa</title>
+    <para>
+    </para>
+
+  </section>
+
+  <section>
+    <title>GIMP Scheme hack</title>
+    <para>
+    </para>
+
+  </section>
+
+
 </chapter>                
