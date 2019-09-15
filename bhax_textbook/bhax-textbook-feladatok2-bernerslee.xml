@@ -37,14 +37,6 @@
         Most pedig nézzük meg azokat a jegyeket amelyekben a két nyelv sokban hasonlít. 
       </para>
       
-        <list type="bullet">
-          <item>
-            <description>
-              Mind a C++ mind a Java támogatja az Objektum-orientált prgoramozást és annak főbb funkcióit: Örklődés, polimorfizmus, absztrakció
-              és enkapszuláció.
-            </description>
-          </item>
-        </list>
       
         
     </section>        
