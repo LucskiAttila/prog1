@@ -36,7 +36,27 @@
       <para>
         Most pedig nézzük meg azokat a jegyeket amelyekben a két nyelv sokban hasonlít. 
       </para>
-      
+      <itemizedlist>
+        <listitem>
+          <para>Mind a C++ mind a Java egyaránt támogatják az objektum-orientált programozást és annak főbb funkcióit, úgy mint az 
+          öröklődés, polimorfizmus, enkapszuláció és absztrakció.</para>
+        </listitem>
+        <listitem>
+          <para>A két nyelv szintaxisa nagyon hasonlít. Ahogy a bevezetésben említettem, a Javát tudatosan tervezték így.</para>
+        </listitem>
+        <listitem>
+          <para>A kommentelés megegyező a két nyelvben</para>
+        </listitem>
+        <listitem>
+          <para>A loopok és logikai/feltételes elágazások nagyon hasonlóak</para>
+        </listitem>
+        <listitem>
+          <para>A program végrehajtása mindkét nyelvben a "main" funkcióban kezdődik</para>
+        </listitem>
+        <listitem>
+          <para>Mindkét nyelv támogatja a több szálon való futtatást</para>
+        </listitem>
+      </itemizedlist>
       
         
     </section>        
@@ -46,6 +66,30 @@
         <para>
           Python: Forstner Bertalan, Ekler Péter, Kelényi Imre: Bevezetés a mobilprogramozásba. (35-51. oldalak)
         </para>
+
+      <para>
+        A Python egy általános célú programozás nyelvi, amely a Javával szinte egyidős, ugyanis Guido von Rossum 1990-ben alkotta meg
+        a nyelvet és 1991-ben hozta nyilvánosságra. A Python főbb tulajdonságai a dinamikusság, objektum-orientáltság és a
+        platform-függetlenség. Noha egyszerűbb alkalmazások teljeséggel megírhatók Pythonban, fő erőssége a prototípus készítés és tesztelés
+        a mobilalkalmazások területén ugyanis használatakor a forditási fázis kihagyható a programírás/fordítás/tesztelés/újrafordítási
+        ciklusból, hiszen az interpreternek elég a Python forrást megadni amely ezek után automatikusan futtatja az alkalmazást.
+        
+        
+      </para>
+
+      <para>
+        Akik a C alapú nyelvekhez vannak szokva azoknak elsőre igen fura lehet a Python, ugyanis szintaxisa jelentősen eltérő. 
+        Például kapcsos zárójelekkel nem igen fogunk találkozni, ugyanis a Python nyelv behúzásalapú. Ez azt jelenti, hogy az
+        állításokat a különböző szintű behúzásokkal tudjuk csoportosítani. Ezeket a behúzásokat egységesen kell kezelni, vagy mindenhol
+        tabot vagy space-t használjunk, ne váltogassuk. További érdekesség, hogy pontosvesszőt sem kell használnunk, ugyanis minden utasítás
+        az adott sor végéig tart, ha esetleg egy sorba nem férne ki egy utasítás akkor egy blackslash karakterrel kell jeleznünk, hogy a következő
+        sorban folytatjuk. A kommentelés is eltérően történik a C-alapú nyelvektől, // helyet a Python # jelet használ az egysoros 
+        kommentek létrehozására.
+      </para>
+      <para>
+        
+        
+      </para>
         
     </section>        
         
