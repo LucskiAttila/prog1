@@ -14,6 +14,38 @@
           C++: Benedek Zoltán, Levendovszky Tihamér Szoftverfejlesztés C++ nyelven
           Java: Nyékyné Dr. Gaizler Judit et al. Java 2 útikalauz programozóknak 5.0 I-II.
         </para>
+
+      <para>
+        
+        Mielőtt az összehasonlításba belekezdenék, nézzük előbb pár sorban a két nyelv rövid történetét, vagyis leginkább az eredetét.
+        A C++ nyelve Bjarne Stroustrup fejlesztette ki az AT &amp; T Bell Laboratories-nál 1979-ben. Stroustrup nagy támogatója volt a C nyelvnek
+        és a ++ a nyelv nevében arra is utal, hogy ez a C nyelv egy következő iterációja. A C++ megalkotásánál célja egy olyan nyelv létrtehozása
+        volt amely támogatja az objektum-orientált vonásokat és ugyanakkor megőrzi a C nyelv erősségeit is.
+
+      </para>
+
+      <para>
+        A Javát 1991-ben fejlesztette ki a Sun Microsystems nevű kis csapat, James Goslinggal az élükön. Kezdetben a nyelv célja otthoni
+        elektromos berendezések (pl TV) programozására akarták használni, de ez az irányzat meghaladta a kábeles TV ipar akkori
+        technológiáját. Gosling és csapata szerettek volna azoknak a programozóknak is kedvezni akik eddig C-t és C++-t használtak, ezért
+        a Java nyelv szintaxisát tudatosan hasonlóra tervezték mint a C és C++ nyelveké. Vicces kis történet, hogy a nyelv neve honnan is ered.
+        A csapat ugyanis rengeteget gondolkodott, hogy minek nevezzék a nyelvet, majd ezen megfeszítő tevékenysüg közepette elmentek egy kávé
+        szünetre, ahol Java kávét szürcsölgetve született a nyelv elnevezése. 
+      </para>
+
+      <para>
+        Most pedig nézzük meg azokat a jegyeket amelyekben a két nyelv sokban hasonlít. 
+      </para>
+      <para>
+        <list type="bullet">
+          <item>
+            <description>
+              Mind a C++ mind a Java támogatja az Objektum-orientált prgoramozást és annak főbb funkcióit: Örklődés, polimorfizmus, absztrakció
+              és enkapszuláció.
+            </description>
+          </item>
+        </list>
+      </para>
         
     </section>        
 
