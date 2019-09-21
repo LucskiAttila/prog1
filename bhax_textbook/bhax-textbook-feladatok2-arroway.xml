@@ -8,11 +8,114 @@
 
     <section>
         <title>OO szemlélet</title>
-        <para>
       
+        <para>
+
+          A polártranszformációs generátor működésének az alapelgondolása a következő: Először is tárol egy logika változót és tud tárolni
+          egy értéket. A logika változó értéke azt hivatott reprezentálni, hogy éppen van-e tárolt érték vagy nincs. Ha nincs tárolt érték
+          akkor generálunk, de nem is egyet hanem rögtön két pseudo random számot. Az egyik a függvényünk visszatérési értéke lesz a másik pedig a tárolt
+          érték, amit legközelebb már visszatudunk majd adni ha újabb avagy több random számra van szükségünk. Az algoritmus így néz ki: 
+
         </para>
+      
       <para>
+        <programlisting language = "Java">
+          <![CDATA[
+          
+      public class PolarGenerator {
+
+          private static boolean vanTarolt;
+          private double taroltErtek;
+
+          public PolarGenerator() {
+              vanTarolt = false;
+
+          }
+
+          public double generate() {
+              if (!vanTarolt)
+              {
+                  double u1, u2, v1, v2, w;
+
+                  do{
+                      u1 = random();
+                      u2 = random();
+                      v1 = 2 * u1 - 1;
+                      v2 = 2 * u2 -1;
+                      w = v1 * v1 + v2 * v2;
+                  }
+                  while (w > 1);
+
+                  double r = Math.sqrt ((-2 * Math.log (w)) / w);
+
+                  taroltErtek = r * v2;
+                  vanTarolt = !vanTarolt;
+
+                  return r * v1;
+              }
+
+              else
+              {
+                  vanTarolt = false;
+                  return taroltErtek;
+              }
+          }
+
+      }
+   
+           ]]>
+        </programlisting>
         
+      </para>
+
+      <para>
+        Ezután a main függvényünkben példányosítunk és futtatjuk, jelen esetben 15 random számot generálva.
+
+        <programlisting language = "Java">
+          <![CDATA[
+          
+          public static void main(String[] args) {
+        
+              for (int i=0;i<15;i++) {
+                  PolarGenerator PolarGen = new PolarGenerator();
+                  double random= PolarGen.generate();
+                  System.out.println(random);
+              }
+        
+
+          }
+          
+           ]]>
+        </programlisting>
+
+        <figure>
+          <title>Futtatás eredménye</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../Prog2Arroway/generate.png" format="PNG" scale="90"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+        
+        
+      </para>
+
+      <para>
+        A mi Polárgenerátorunk lényegében ugyanaz mint a Java nextGaussian() nevű függvénye. A hivatalos Oracle dokumentációban elolvashatjuk
+        hogy ez is a "polar methodust" használja: "This uses the polar method of G. E. P. Box, M. E. Muller, and G. Marsaglia,
+        as described by Donald E. Knuth in The Art of Computer Programming, Volume 3: Seminumerical Algorithms,
+        section 3.4.1, subsection C, algorithm P. Note that it generates two independent values at the cost
+        of only one call to StrictMath.log and one call to StrictMath.sqrt."
+
+        <figure>
+          <title>nextGaussian</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../Prog2Arroway/nextGaussian.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
       </para>
         
     </section>        
