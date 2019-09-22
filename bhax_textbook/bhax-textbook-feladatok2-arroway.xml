@@ -142,7 +142,7 @@
 public static Integer valueOf(int i)
 
 Returns an Integer instance representing the specified int value.
-If anew Integer instance is not required, this method should
+If a new Integer instance is not required, this method should
 generally be used in preference to the constructor Integer(int),
 as this method is likely to yield significantly better space and
 time performance by caching frequently requested values.
@@ -156,6 +156,12 @@ Returns:
 an Integer instance representing i.
         
 </literallayout>
+      
+      Láthatjuk hát, hogy amikor Integer objektumot hozunk létre akkor a -128-tól 127-ig intervallumban mindig egy cachelt poolból fogunk
+      értéket kapni, tehát ha x-nek és t-nek is mondjuk 127-et adunk értékként, akkor mindkét változóhoz szimplán ugyanazt az objektumot
+      rendeljük hozzá kétszer. Viszont ha ezeken az értékeken kívűl adunk x-nek és t-nek értéket (de továbbra is ugyanazt az értéket)
+      akkor már nem ugyanazt az objektumot fogjuk hozzájuk rendelni, így a memóriacímük is eltérő lesz, ergó a t!=x feltétel teljesül
+      és végtelen ciklusba lépünk.
 
 
     </para>
@@ -182,6 +188,46 @@ an Integer instance representing i.
     </programlisting>
 
 
+    </para>
+
+    <para>
+
+      <figure>
+        <title>Az x!=t feltétel nem teljesül</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/nemvegtelen.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>Az x!=t feltétel ismét nem teljesül</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/nemvegtelen2.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>Az x!=t feltétel teljesül</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/vegtelen1.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>Az x!=t feltétel ismét teljesül</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/vegtelen2.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
     </para>
     
   </section>
