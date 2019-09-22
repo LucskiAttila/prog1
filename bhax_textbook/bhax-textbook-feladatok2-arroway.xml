@@ -138,44 +138,44 @@
           <![CDATA[
           
           
-          public class LZWBinFa {
+    public class LZWBinFa {
 
 
-          public LZWBinFa() {
+        public LZWBinFa() {
 
               fa = gyoker;
 
-          }
-
-    public void egyBitFeldolg(char b) {
-
-        if (b == '0') {
-
-            if (fa.nullasGyermek() == null)
-            {
-
-                Csomopont uj = new Csomopont('0');
-
-                fa.ujNullasGyermek(uj);
-
-                fa = gyoker;
-            } else
-            {
-
-                fa = fa.nullasGyermek();
-            }
         }
 
-        else {
-            if (fa.egyesGyermek() == null) {
-                Csomopont uj = new Csomopont('1');
-                fa.ujEgyesGyermek(uj);
-                fa = gyoker;
-            } else {
-                fa = fa.egyesGyermek();
+        public void egyBitFeldolg(char b) {
+
+            if (b == '0') {
+
+                if (fa.nullasGyermek() == null)
+                {
+
+                    Csomopont uj = new Csomopont('0');
+
+                    fa.ujNullasGyermek(uj);
+
+                    fa = gyoker;
+                } else
+                {
+
+                    fa = fa.nullasGyermek();
+                }
+              }
+
+              else {
+                if (fa.egyesGyermek() == null) {
+                    Csomopont uj = new Csomopont('1');
+                    fa.ujEgyesGyermek(uj);
+                    fa = gyoker;
+                } else {
+                    fa = fa.egyesGyermek();
+                }
             }
         }
-    }
 
 
     public void kiir() {
