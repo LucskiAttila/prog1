@@ -134,15 +134,25 @@
     <title>Gagyi</title>
   
     <para>
-      Hogy megértsük, hogy hogyan is működik az Integer típus és hogy miért is érdekes ez a feladat, érdemes először is egy pillantást
-      vetni az Integer osztály valueOf() nevű függvényének dokumentációjára: \n\n valueOf(int i) \n\n Returns an Integer instance representing the specified int value. If a
-      new Integer instance is not required, this method should generally be used in preference to the
-      constructor Integer(int), as this method is likely to yield significantly better space and time performance by
-      caching frequently requested values. This method will always cache values in the range -128 to 127, inclusive,
-      and may cache other values outside of this range.  \n\n Parameters: \n
-      \t i - an int value. \n
-      Returns:
-      \t an Integer instance representing i.
+      <literallayout>
+        Hogy megértsük, hogy hogyan is működik az Integer típus és hogy miért is érdekes ez a feladat, érdemes először is egy pillantást
+        vetni az Integer osztály valueOf() nevű függvényének dokumentációjára:
+        
+        public static Integer valueOf(int i)
+
+        Returns an Integer instance representing the specified int value. If a
+        new Integer instance is not required, this method should generally be used in preference to the
+        constructor Integer(int), as this method is likely to yield significantly better space and time performance by
+        caching frequently requested values. This method will always cache values in the range -128 to 127, inclusive,
+        and may cache other values outside of this range. 
+        
+        Parameters: 
+        i - an int value.
+        
+        Returns:
+        an Integer instance representing i.
+        
+      </literallayout>
 
 
     </para>
