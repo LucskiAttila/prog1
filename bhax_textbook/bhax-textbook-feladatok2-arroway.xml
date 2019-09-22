@@ -193,7 +193,7 @@ an Integer instance representing i.
     <para>
 
       <figure>
-        <title>Az x!=t feltétel nem teljesül</title>
+        <title>A t != x feltétel nem teljesül, a program futása véget ér</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../Prog2Arroway/nemvegtelen.png" format="PNG" scale="70"/>
@@ -202,7 +202,7 @@ an Integer instance representing i.
       </figure>
 
       <figure>
-        <title>Az x!=t feltétel ismét nem teljesül</title>
+        <title>A t != x feltétel ismét nem teljesül</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../Prog2Arroway/nemvegtelen2.png" format="PNG" scale="70"/>
@@ -211,7 +211,7 @@ an Integer instance representing i.
       </figure>
 
       <figure>
-        <title>Az x!=t feltétel teljesül</title>
+        <title>A t != x feltétel teljesül, végtelen ciklusba lépünk</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../Prog2Arroway/vegtelen1.png" format="PNG" scale="70"/>
@@ -220,7 +220,7 @@ an Integer instance representing i.
       </figure>
 
       <figure>
-        <title>Az x!=t feltétel ismét teljesül</title>
+        <title>A t != x feltétel ismét teljesül</title>
         <mediaobject>
           <imageobject>
             <imagedata fileref="../Prog2Arroway/vegtelen2.png" format="PNG" scale="70"/>
@@ -237,6 +237,49 @@ an Integer instance representing i.
 
     <para>
 
+      Ha láttuk már a Star Wars-t angolul akkor tudjuk, hogy Yoda elég furán beszéli az angolt, ugyanis egyfajta fordított szintaxist
+      használ, ahol az igéket mindig a mondat végére teszi. A Yoda-conditions programozói stílus elnevezése innen származik.
+
+
+      <figure>
+        <title>Yoda syntax</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/yoda.jpg" format="JPG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
+
+    </para>
+
+    <para>
+      Tehát követve a Yoda-conditions, a lényeg hogy egy if összehasonlításnál például egy konstans-t helyezünk első helyre ezzel kikerülve
+      azt hogy NullPointerException-t kapjunk. Íme egy példa ahol ezt nem tartjuk be (szerencsére az IDE-k többsége mára már van annyira
+      okos, hogy az ilyen hibákat már futás előtt is észreveszik és jelzi a felhasználónak hogy itt bizony az equals() függvény NullPointerExceptiont
+      fog dobni):
+
+      <figure>
+        <title>Non-Yoda conditions</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/noyoda.png" format="PNG" scale="90"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      Nézzük meg hogy ha mindenképp szeretnénk egy Stringet, melynek értéke null, valamivel összehasonlítani akkor azt hogyan tehetjük meg
+      Yoda bölcsességét felhasználva.
+
+      <figure>
+        <title>Yoda condition-t használva</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Arroway/yodaworks.png" format="PNG" scale="90"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
     </para>
 
   </section>
