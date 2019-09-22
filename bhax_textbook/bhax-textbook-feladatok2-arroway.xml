@@ -122,6 +122,7 @@
 
     <section>
         <title>Homokozó</title>
+      
         <para>
           
         </para>
@@ -289,7 +290,126 @@ an Integer instance representing i.
 
     <para>
 
-    </para>
+      A feladat leírása szerint a <link xlink:href="https://www.davidhbailey.com//dhbpapers/bbp-alg.pdf">https://www.davidhbailey.com//dhbpapers/bbp-alg.pdf</link> folyóiratból kiindulva
+      kellett a BBP algoritmust Java nyelven megírni, amely a Pi hexa számjegyeit hívatott kiszámolni. A feladat megoldása igényelt egy bizonyos
+      szintű matematika háttértudást, aminek sajnos én nem voltam teljességel birtokában ezért
+
+      <link xlink:href="https://www.tankonyvtar.hu/hu/tartalom/tkt/javat-tanitok-javat/apbs02.html#pi_jegyei">ebből</link> a forrásból indulva
+      dolgoztam és próbáltam a problémát reverse engineering jeleggel értelmezni. Maga az algoritmus így néz ki:
+
+      <programlisting language = "Java">
+          <![CDATA[
+          
+     class PiBBP {
+
+        private String d16PiHexaJegyek;
+
+        private PiBBP(int d) {
+
+        double d16Pi;
+
+        double d16S1t = d16Sj(d, 1);
+        double d16S4t = d16Sj(d, 4);
+        double d16S5t = d16Sj(d, 5);
+        double d16S6t = d16Sj(d, 6);
+
+        d16Pi = (4.0d * d16S1t) - (2.0d * d16S4t) - d16S5t - d16S6t;
+
+        d16Pi -= StrictMath.floor(d16Pi);
+
+        StringBuilder sb = new StringBuilder();
+
+        Character[] hexaJegyek = {'A', 'B', 'C', 'D', 'E', 'F'};
+
+        while(d16Pi != 0.0d) {
+
+            int jegy = (int)StrictMath.floor(16.0d*d16Pi);
+
+            if(jegy<10)
+                sb.append(jegy);
+            else
+                sb.append(hexaJegyek[jegy-10]);
+
+            d16Pi = (16.0d*d16Pi) - StrictMath.floor(16.0d*d16Pi);
+        }
+
+        d16PiHexaJegyek = sb.toString();
+    }
+
+    private double d16Sj(int d, int j) {
+
+        double d16Sj = 0.0d;
+
+        for(int k=0; k<=d; ++k)
+            d16Sj += (double)n16modk(d-k, 8*k + j) / (double)(8*k + j);
+
+        return d16Sj - StrictMath.floor(d16Sj);
+    }
+
+    private long n16modk(int n, int k) {
+
+        int t = 1;
+        while(t <= n)
+            t *= 2;
+
+        long r = 1;
+
+        while(true) {
+
+            if(n >= t) {
+                r = (16*r) % k;
+                n = n - t;
+            }
+
+            t = t/2;
+
+            if(t < 1)
+                break;
+
+            r = (r*r) % k;
+
+        }
+
+        return r;
+    }
+
+
+
+      
+
+        ]]>
+      </programlisting>
+
+      Ezután a main függvényünkben a new kulcsszóval példányosítjuk a PiBPP nevezetű objektumunkat és egyúttal ki is íratjuk a Pi 1000001. jegytől a következő néhány
+      hexadecimális számot:
+
+      <programlisting language = "Java">
+          <![CDATA[
+          
+          public static void main(String[] args) {
+          
+              System.out.print(new PiBBP(1000000));
+          }
+          
+          ]]>
+        </programlisting>
+      
+      Amelyre a következőt outputot kapjuk: 
+
+    <figure>
+      <title>Futtatás eredménye</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../Prog2Arroway/pibpp.png" format="PNG" scale="120"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+
+
+
+
+
+      </para>
 
   </section>
 
