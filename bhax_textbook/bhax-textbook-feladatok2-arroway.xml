@@ -380,8 +380,8 @@ an Integer instance representing i.
         ]]>
       </programlisting>
 
-      Ezután a main függvényünkben a new kulcsszóval példányosítjuk a PiBPP nevezetű objektumunkat és egyúttal ki is íratjuk a Pi 1000001. jegytől a következő néhány
-      hexadecimális számot:
+      Ezután a main függvényünkben a new kulcsszóval példányosítjuk a PiBPP nevezetű objektumunkat és egyúttal ki is íratjuk a Pi szám 1000001. jegyétől következő néhány
+      számot hexadecimális formában:
 
       <programlisting language = "Java">
           <![CDATA[
