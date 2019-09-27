@@ -9,15 +9,105 @@
     <section>
         <title>Liskov helyettesítés sértése</title>
         <para>
+          A Liskov helyettesítési elv (Liskov Substitution Principle - LSP) egy koncepció az Objektum Orientált programozásban, amely
+          azt mondja ki hogy ha egy S altípusa T-nek, akkor minden olyan helyen ahol T-t felhasználjuk
+          S-t is minden gond nélkül behelyettesíthetjük anélkül,
+          hogy a programrész tulajdonságai megváltoznának.
+          
+        <figure>
+         <title>Liskov helyettesítési elv</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../Prog2Liskov/ilxzO.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+          
           
         </para>
+      <para>
+        Ezt az elvet és annak sértését nagyon könnyen lehet szemlélteni akár valódi életből kiragadott példákkal is. Például:
+
+        <programlisting language = "Java">
+          <![CDATA[
+          
+          public class Madarak{
+              public void repul(){}
+          }
+          
+          public class Kacsa extends Madarak{}
+          
+            ]]>
+        </programlisting>
+
+        Eddig ügye semmi probléma, van egy Madarak osztályunk amiben van egy Repül nevezetű funkciónk és azt mondjuk, hogy a Kacsa osztály
+        a Madarak osztály leszármazottja. A gondok az ilyen eseteknél kezdődnek:
+
+        <programlisting language = "Java">
+          <![CDATA[ 
+          
+        public class Strucc extends Madarak{}
+        
+           ]]>
+        </programlisting>
+        A strucc az madár, viszont repülni nem tud, így megszegjük a Liskov helyettesítési elvet. Egy megoldás: jobb OO tervezés, szükség
+        esetén pontosabb specifikálás.
+
+        <programlisting language = "Java">
+          <![CDATA[ 
+          
+            public class Madarak{
+            }
+            public class RepuloMadarak extends Madarak{
+                public void fly(){}
+            }
+            public class Kacsa extends RepuloMadarak{}
+            public class Strucc extends Madarak{} 
+          
+          
+           ]]>
+        </programlisting>
+        
+        
+        
+      </para>
+      
+      
     </section>
 
   <section>
     <title>Szülő-gyerek</title>
     <para>
+      
+      A feladat szerint olyan osztálydefiníciót kell írni, amelyben demonstráljuk, hogy a szülőn keresztül
+      nem küldhető a gyerek üzenete, csak a sajátja. 
 
     </para>
+
+    <para>
+
+      <figure>
+        <title>A szülő nem tudja a gyerek üzenetét küldeni</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/szulogyerek.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+
+      <figure>
+        <title>A szülő a saját üzenetét minden gond nélkül elküldi</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/szulogyerek2.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+    </para>
+    
+    
   </section>
 
   <section>
