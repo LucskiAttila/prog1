@@ -113,6 +113,112 @@
   <section>
     <title>Anti OO</title>
     <para>
+      A már korábban vizsgált BBP algoritmussal kellett dolgozni ebben a feladatban is. A Pi hexadecimális kifejtésének
+      a 0. pozíciótól számított 10^6, 10^7 és 10^8-on jegyét kellett C, Java és C# nyelven meghatározni és ezen különböző
+      nyelvekek az algoritmus futási idejét összevetni. Ez a feladat akár egy kis házibajnokságként is megállná a helyét.
+      Az én esetemben a Java nyelv volt a leggyorsabb, ami nagy meglepetésemre szolgált ugyanis azt tettem volna utolsó helyre,
+      előzetes vizsgálódásaim miatt pedig a C#-ot az elsőre, ami pedig pont hogy utolsóként végzett nálam. A CPU-m:
+      AMD RYZEN 5 3600X 6-Core 3.8 GHz.
+      Lássuk akkor az eredményeket:
+
+
+    </para>
+
+    <para>
+      <figure>
+        <title>Java Pi Bench 10^6</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/PiBenchJava6.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>Java Pi Bench 10^7</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/PiBenchJava7.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>Java Pi Bench 10^8</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/PiBenchJava8.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
+      Láthatjuk, hogy Java nyelven még a 10^8-on számot is elég gyorsan kiszámolta, ezzel szemben a C# már kicsit tovább 
+      tartott. Lássuk is: 
+  
+    </para>
+
+    <para>
+      <figure>
+        <title>C# Pi Bench 10^6</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/PiBenchCS6.png" format="PNG" scale="100"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>C# Pi Bench 10^7</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/PiBenchCS7.png" format="PNG" scale="100"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>C# Pi Bench 10^8</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/PiBenchCS8.png" format="PNG" scale="100"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
+      
+    </para>
+
+    <para>
+
+      A C nyelv egészen korrektül szerepelt annak ellenére, hogy én VirtualBox-ból futtatott Linuxon teszteltem, így
+      nem volt hozzáférése a CPU és RAM teljes erőforrásaihoz.
+
+      <figure>
+        <title>C Pi Bench 10^6</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/pibenchC6.png" format="PNG" scale="100"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>C Pi Bench 10^7</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/pibenchC7.png" format="PNG" scale="100"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <figure>
+        <title>C Pi Bench 10^8</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/pibenchC8.png" format="PNG" scale="100"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
 
     </para>
   </section>
