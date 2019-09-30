@@ -129,7 +129,7 @@
         <title>Java Pi Bench 10^6</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Liskov/PiBenchJava6.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Liskov/PiBenchJava6.png" format="PNG" scale="100"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -138,7 +138,7 @@
         <title>Java Pi Bench 10^7</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Liskov/PiBenchJava7.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Liskov/PiBenchJava7.png" format="PNG" scale="100"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -147,7 +147,7 @@
         <title>Java Pi Bench 10^8</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Liskov/PiBenchJava8.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Liskov/PiBenchJava8.png" format="PNG" scale="100"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -197,7 +197,7 @@
         <title>C Pi Bench 10^6</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Liskov/pibenchC6.png" format="PNG" scale="100"/>
+            <imagedata fileref="../Prog2Liskov/pibenchC6.png" format="PNG" scale="70"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -206,7 +206,7 @@
         <title>C Pi Bench 10^7</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Liskov/pibenchC7.png" format="PNG" scale="100"/>
+            <imagedata fileref="../Prog2Liskov/pibenchC7.png" format="PNG" scale="70"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -215,7 +215,7 @@
         <title>C Pi Bench 10^8</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Liskov/pibenchC8.png" format="PNG" scale="100"/>
+            <imagedata fileref="../Prog2Liskov/pibenchC8.png" format="PNG" scale="70"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -233,7 +233,31 @@
   <section>
     <title>Ciklomatikus komplexitás</title>
     <para>
+      
+      A ciklomatikus komplexitás egy olyan mérőszám amely a programok komplexitását hívatott leírni. 
+      A forráskód komplexitását az elágazások fogják befolyásolni és a belőlük felépíthető gráf pontjai,
+      de ebbe most ne menjünk jobban bele. 
 
+    </para>
+
+    <para>
+      Én az LZWBinfa java verziójának komplexitását vizsgáltam meg és egy egyszerű de nagyszerű online tool-t használtam.
+      <link xlink:href="http://www.lizard.ws">Ezen</link> az oldalon mindössze annyi a teendőnk, hogy a vizsgálni kívánt forráskódot bemásoljuk
+      a megfelelő helyre és analizáljuk azt. 
+      
+    </para>
+
+    <para>
+
+      <figure>
+        <title>Az LZWBinFa.java komplexitása </title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Liskov/complexity.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
     </para>
   </section>
         
