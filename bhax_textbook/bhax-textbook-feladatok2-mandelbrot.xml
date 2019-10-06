@@ -68,7 +68,7 @@
     <para>
       A program készített egy Csomopont, egy Global és egy LZWBinFa header file-t melyek sorban így néznek ki:
 
-      <programlisting language = "CPP">
+      <programlisting language = "C++">
           <![CDATA[
           
 #include <exception>
@@ -112,7 +112,7 @@ class Csomopont
         </programlisting>
 
 
-      <programlisting language = "CPP">
+      <programlisting language = "C++">
         <![CDATA[
           
           
@@ -146,7 +146,7 @@ class GLOBAL
 
 
 
-      <programlisting language = "CPP">
+      <programlisting language = "C++">
         <![CDATA[
           
           
@@ -220,7 +220,7 @@ class LZWBinFa
 
       Minden header file-nak megvan a C++ párja, melyben az adott header file include-olva van. Például az LZWBinFa.cpp így néz ki:
 
-      <programlisting language = "CPP">
+      <programlisting language = "C++">
         <![CDATA[
         
 #include <exception>
