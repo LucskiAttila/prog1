@@ -8,10 +8,53 @@
 
     <section>
         <title>Reverse engineering UML osztálydiagram</title>
-        <para>
-        </para>
+
+      <para>
+        Az UML diagram egy olyan diagram melynek célja valamilyen rendszer vizuális reprezentálása. Nem csak
+        programokat, programkódot lehet lemodellezni vele, hanem bármilyen rendszert amiben a szereplők, szerepek,
+        osztályok kapcsolatban állnak és köztük valamilyen akciók, műveletek hajtódnak végre. Gyakran használják például
+        üzleti folyamatok modellezésére. Az UML a Unified
+        Modeling Language akronímja, azaz Egységes Modelező Nyelv. Egységes, ugyanis 1997-től ez a sztenderd a
+        fent említett rendszerek modellezésére. Mi most a már jól ismert Binfa programunkat fogjuk vele lemodellezni.
+        Mivel most már meglévő kódból állítunk elő egy modellt, ezért ezt a folyamatot, ahogy a feladat neve is mutatja,
+        reverse engineeringnek nevezzük, hiszen visszafele dolgozunk. Nagyobb, számos komponensből összetevődő
+        projekteknél ugyanis általános eljárás az, hogy előszőr UML diagramban alkotják meg a projektet, hogy egy
+        jól átlátható képet kapjanak például a programozók hogy a program/projekt egyes elemei hogyan is állnak majd
+        egymással kapcsolatban.
+      </para>
+      <para>
+        Szerintem a kódot ismerjük már annyira hogy azt innen kihagyhatom és ugorhatunk is egyből a diagramra. Én a
+        modellezéshez a Visual Paradigm programot használtam, amely program ugyan fizetős, de elérhető egy 30 napos ingyenes
+        próbaverzió. A programot megnyitva elsőre kicsit megijedhetünk a rengeteg lehetőségtől amit a program kínál, de
+        ne pánikoljunk, a diagram generálása viszonylag egyszerű. Navigáljunk a Tools/Code/Instant Reverse opcióhoz ahol is
+        a következő ablak fogad minket:
+
+        <figure>
+          <title>Instant reverse</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../Prog2Mandelbrot/uml1.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+        Itt a Path-nél keressük meg a program forráskódját amelyből UML diagramot akarunk generálni, majd kattintsunk
+        az Ok-ra és nagyjából készen is vagyunk. Az eredmény:
+
+        <figure>
+          <title>Binfa UML diagramja</title>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="../Prog2Mandelbrot/uml2.png" format="PNG" scale="70"/>
+            </imageobject>
+          </mediaobject>
+        </figure>
+
+      </para>
         
     </section>
+  
+  
   <section>
     <title>Forward engineering UML osztálydiagram</title>
     <para>
