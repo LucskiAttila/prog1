@@ -328,7 +328,7 @@ void LZWBinFa::rszoras(Csomopont* aElem) {
         <title>Company hiring process</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Mandelbrot/Bpmn.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Mandelbrot/Bpmn.png" format="PNG" scale="55"/>
           </imageobject>
         </mediaobject>
       </figure>
