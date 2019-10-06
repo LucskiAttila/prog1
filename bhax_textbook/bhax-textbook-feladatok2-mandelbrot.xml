@@ -58,6 +58,249 @@
   <section>
     <title>Forward engineering UML osztálydiagram</title>
     <para>
+      
+      Mint ahogy a feladat neve is mutatja, itt a szokványos eljárással kellett UML diagramból legenerálni a forráskódunk vázát.
+      Szerintem itt adta magát a lehetőség, hogy az előző feladatban előállított Binfa UML Diagramból generáljuk forrást és
+      azt összevessük az eredeti kóddal. Nézzük is hogy mi született ebből. 
+      
+    </para>
+
+    <para>
+      A program készített egy Csomopont, egy Global és egy LZWBinFa header file-t melyek sorban így néznek ki:
+
+      <programlisting language = "CPP">
+          <![CDATA[
+          
+#include <exception>
+using namespace std;
+
+#ifndef __Csomopont_h__
+#define __Csomopont_h__
+
+class Csomopont;
+
+class Csomopont
+{
+	private: char _betu;
+	private: Csomopont* _balNulla;
+	private: Csomopont* _jobbEgy;
+
+	public: Csomopont(char aB = '/');
+
+	public: void _Csomopont();
+
+	public: Csomopont* nullasGyermek();
+
+	public: Csomopont* egyesGyermek();
+
+	public: void ujNullasGyermek(Csomopont* aGy);
+
+	public: void ujEgyesGyermek(Csomopont* aGy);
+
+	public: char getBetu();
+
+	private: Csomopont(const Csomopont& aUnnamed_1);
+
+	private: Csomopont& _(const Csomopont& aUnnamed_1);
+};
+
+#endif
+          
+          
+          
+           ]]>
+        </programlisting>
+
+
+      <programlisting language = "CPP">
+        <![CDATA[
+          
+          
+#include <exception>
+using namespace std;
+
+#ifndef __GLOBAL_h__
+#define __GLOBAL_h__
+
+#include "LZWBinFa.h"
+
+class LZWBinFa;
+class GLOBAL;
+
+class GLOBAL
+{
+
+	public: void usage();
+
+	public: void fgv(LZWBinFa aBinFa);
+
+	public: int main(int aArgc, char* aArgv[] );
+};
+
+#endif
+
+          
+          
+           ]]>
+      </programlisting>
+
+
+
+      <programlisting language = "CPP">
+        <![CDATA[
+          
+          
+#include <exception>
+using namespace std;
+
+#ifndef __LZWBinFa_h__
+#define __LZWBinFa_h__
+
+#include "Csomopont.h"
+
+class Csomopont;
+class LZWBinFa;
+
+class LZWBinFa
+{
+	private: Csomopont* _fa;
+	private: int _melyseg;
+	private: int _atlagosszeg;
+	private: int _atlagdb;
+	private: double _szorasosszeg;
+	protected: Csomopont _gyoker;
+	protected: int _maxMelyseg;
+	protected: double _atlag;
+	protected: double _szoras;
+
+	public: LZWBinFa();
+
+	public: void _LZWBinFa();
+
+	public: LZWBinFa(const LZWBinFa& aRegi);
+
+	public: LZWBinFa(LZWBinFa&& aRegi);
+
+	public: LZWBinFa& _<(char aB);
+
+	public: void kiir();
+
+	public: int getMelyseg();
+
+	public: double getAtlag();
+
+	public: double getSzoras();
+
+	public: void kiir(std::ostream& aOs);
+
+	private: void kiir(Csomopont* aElem, std::ostream& aOs);
+
+	private: void szabadit(Csomopont* aElem);
+
+	private: Csomopont* masol(Csomopont* aElem, Csomopont* aRegifa);
+
+	protected: void rmelyseg(Csomopont* aElem);
+
+	protected: void ratlag(Csomopont* aElem);
+
+	protected: void rszoras(Csomopont* aElem);
+};
+
+#endif
+
+          
+          
+           ]]>
+      </programlisting>
+          
+
+    </para>
+
+    <para>
+
+      Minden header file-nak megvan a C++ párja, melyben az adott header file include-olva van. Például az LZWBinFa.cpp így néz ki:
+
+      <programlisting language = "CPP">
+        <![CDATA[
+        
+#include <exception>
+using namespace std;
+
+#include "LZWBinFa.h"
+#include "Csomopont.h"
+
+LZWBinFa::LZWBinFa() {
+}
+
+void LZWBinFa::_LZWBinFa() {
+	throw "Not yet implemented";
+}
+
+LZWBinFa::LZWBinFa(const LZWBinFa& aRegi) {
+}
+
+LZWBinFa::LZWBinFa(LZWBinFa&& aRegi) {
+}
+
+LZWBinFa& LZWBinFa::_<(char aB) {
+	throw "Not yet implemented";
+}
+
+void LZWBinFa::kiir() {
+	throw "Not yet implemented";
+}
+
+int LZWBinFa::getMelyseg() {
+	return this->_melyseg;
+}
+
+double LZWBinFa::getAtlag() {
+	return this->_atlag;
+}
+
+double LZWBinFa::getSzoras() {
+	return this->_szoras;
+}
+
+void LZWBinFa::kiir(std::ostream& aOs) {
+	throw "Not yet implemented";
+}
+
+void LZWBinFa::kiir(Csomopont* aElem, std::ostream& aOs) {
+	throw "Not yet implemented";
+}
+
+void LZWBinFa::szabadit(Csomopont* aElem) {
+	throw "Not yet implemented";
+}
+
+Csomopont* LZWBinFa::masol(Csomopont* aElem, Csomopont* aRegifa) {
+	throw "Not yet implemented";
+}
+
+void LZWBinFa::rmelyseg(Csomopont* aElem) {
+	throw "Not yet implemented";
+}
+
+void LZWBinFa::ratlag(Csomopont* aElem) {
+	throw "Not yet implemented";
+}
+
+void LZWBinFa::rszoras(Csomopont* aElem) {
+	throw "Not yet implemented";
+}
+
+        
+          ]]>
+      </programlisting>
+      
+      Természetesen a függvények nincsenek implementálva, hiszen az már a varázslattal lenne egyenértékű, ha a program egy
+      diagramból még a függvényeket is megírná, de azért itt még nem tart a technológia. Viszont azt láthatjuk, hogy az eredeti
+      program szerkezetét jól visszaadja a generált váz. 
+      
+
+
+
     </para>
 
   </section>
@@ -72,6 +315,26 @@
   <section>
     <title>BPMN</title>
     <para>
+
+      A BPMN (Business Process Model and Notation) egy folyamatábra, elsősorban vállalati folyamatok vizuális ábrázolására.
+      A feladat kicsit hasonlít a reverse/forward engineering feladatokhoz, viszont itt szigorúan emberekre vonatkozik a folyamatábra.
+      Ismét a Visual Paradigm-ot használtam az én folyamatábrám elkészítéséhez, mint mondtam a program nagyon sokrétű, rengeteg funkcióval,
+      aki a jövőben esetleg olyan területen fog dolgozni ahol gyakran kell ilyen modelleket, diagramokat ábrákat készítenie, annak érdemes
+      lehet a fizetett verzióba beleinvesztálnia, nekem legalábbis elsőre elnyerte a tetszésemet. A folyamat amit ábrázoltam az egy vállalat
+      Hiring process-e, azaz új munkatárs felvétele.
+
+
+      <figure>
+        <title>Company hiring process</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Mandelbrot/Bpmn.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
+      
+
     </para>
 
   </section>
