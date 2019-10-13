@@ -9,6 +9,88 @@
   <section>
     <title>Encoding</title>
     <para>
+      
+      A feladat az volt, hogy a MandelbrotHalmazNagyító.java állományt fordítsuk és futtassuk, úgy hogy a fájl nevekben és
+      a forrásban is meghagyjuk az ékezetes betűket. Persze, a feladat nevéből lehetett tudni, hogy a karakterkészlettel kell
+      majd valamit ügyeskedni, hogy ez a dolog működjön, de előbb azért tettem egy próbát a MandelbrotHalmaz.java lefordítására
+      hogy lássuk is mivel állunk szemben.
+      
+      <figure>
+      <title>Encoding error</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../Prog2Chomsky/encoding_error.png" format="PNG" scale="70"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+      
+      Láthatjuk, hogy az alapvető UTF-8-as kódolást használva számos karakter unmappable, azaz - szó szerinti fordításban -
+      feltérképezhetetlen. 
+      
+    </para>
+
+    <para>
+
+      Így hát mint minden valamire való programozó, én is a Google-ön kezdtem el keresni a megoldást és rövid keresgélés után
+      az <link xlink:href="https://docs.oracle.com/javase/9/intl/supported-encodings.htm">Oracle doksik encodingra vonatkozó oldalán</link> lyukadtam ki,
+      hogy megtudjam, a speciális magyar ékezetes betűket tartalmazó java állományokat hogyan is tudnám lefordítani. Leírásokban konkrétan
+      a magyar nem volt megnevezve, csak egy gyűjtő amibe a magyar nyelv is beletartozik, mégpedig az Eastern European, amihez
+      a megadott IANA encoding a windows-1250 volt. Hogy megbizonyosodjam, hogy jó nyomon járok, azért még egy másik oldalt is
+      szerettem volt keresni, ahol esetleg konkrétan említik, hogy a magyar betűkészlet ténylegesen fordítható ezzel az encodinggal és szerencsére
+      rövid időn belül találtam is: <link xlink:href="https://scratchpad.fandom.com/wiki/Character_Encoding_Recommendation_for_Languages">https://scratchpad.fandom.com/wiki/Character_Encoding_Recommendation_for_Languages</link>
+
+      Ahol konrkétan leríják, hogy melyik nyelv betűkészlete melyik IANA encodinghoz tartozik:
+
+      <figure>
+        <title>Character Encoding Recommendation for Languages</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Chomsky/windowsencoding1250.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
+      
+
+    </para>
+
+    <para>
+      Ezután nem maradt hát más hátra, mint használni az ajánlott kódolást, amit az -encoding flaggel tudunk megadni:
+
+      <figure>
+        <title>Így már lefordul</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Chomsky/encoding_lefordul.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      De a feladat a nagyító fordítását és futtatását kérte, amihez pedig először a MandelbrotIterációk-at kellett előbb fordítani:
+
+      <figure>
+        <title>A nagyító is lefordul és fut</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Chomsky/nagyitois.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      És a nagyítás is kiválóan működik:
+
+      <figure>
+        <title>Nagyítás</title>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../Prog2Chomsky/nagyitas.png" format="PNG" scale="70"/>
+          </imageobject>
+        </mediaobject>
+      </figure>
+      
+      
+      
+      
     </para>
 
   </section>
