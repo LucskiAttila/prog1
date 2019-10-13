@@ -61,7 +61,7 @@
         <title>Így már lefordul</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Chomsky/encoding_lefordul.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Chomsky/encoding_lefordul.png" format="PNG" scale="55"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -72,7 +72,7 @@
         <title>A nagyító is lefordul és fut</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Chomsky/nagyitois.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Chomsky/nagyitois.png" format="PNG" scale="55"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -83,7 +83,7 @@
         <title>Nagyítás</title>
         <mediaobject>
           <imageobject>
-            <imagedata fileref="../Prog2Chomsky/nagyitas.png" format="PNG" scale="70"/>
+            <imagedata fileref="../Prog2Chomsky/nagyitas.png" format="PNG" scale="55"/>
           </imageobject>
         </mediaobject>
       </figure>
@@ -98,7 +98,257 @@
 
   <section>
     <title>OOCWC lexer</title>
+    
     <para>
+      
+      A feladat szerint vázolni kellett a <link xlink:href="https://github.com/nbatfai/robocar-emulator/blob/master/justine/rcemu/src/carlexer.ll">https://github.com/nbatfai/robocar-emulator/blob/master/justine/rcemu/src/carlexer.ll</link>
+      lexert és kapcsolatát. Az OOCWC a Robocar World Championship rövidítése, melynek lényege, hogy autókat láthatunk mozogni Debrecen
+      térképén. Maga a projekt is érdekes, de számunkra azért fontos mert a lexikális egységeket tanulmányozhatjuk, noha nem egy
+      programnyelv részeként, hanem saját, magunk által megírt egységekről lesz szó. Maga a kód így néz ki:
+      
+      <programlisting language = "C++">
+          <![CDATA[ 
+          
+%option c++
+%option noyywrap
+
+%{
+#define YY_DECL int justine::robocar::CarLexer::yylex()
+#include "carlexer.hpp"
+#include <cstdio>
+#include <limits>
+%}
+          
+INIT	"<init"
+INITG	"<init guided"
+WS	[ \t]*
+WORD	[^-:\n \t()]{2,}
+INT	[0123456789]+
+FLOAT	[-.0123456789]+
+ROUTE	"<route"
+CAR	"<car"
+POS	"<pos"
+GANGSTERS	"<gangsters"
+STAT	"<stat"
+DISP	"<disp>"
+%% 
+{DISP}					{
+					  m_cmd = 0;
+					}
+{POS}{WS}{INT}{WS}{INT}{WS}{INT}	{
+					  std::sscanf(yytext, "<pos %d %u %u", &m_id, &from, &to);
+					  m_cmd = 10001;
+					}
+{CAR}{WS}{INT}				{
+					  std::sscanf(yytext, "<car %d", &m_id);
+					  m_cmd = 1001;
+					}
+{STAT}{WS}{INT}				{
+					  std::sscanf(yytext, "<stat %d", &m_id);
+					  m_cmd = 1003;
+					}
+{GANGSTERS}{WS}{INT}			{
+					  std::sscanf(yytext, "<gangsters %d", &m_id);
+					  m_cmd = 1002;
+					}
+{ROUTE}{WS}{INT}{WS}{INT}({WS}{INT})*	{
+				  int size{0};
+				  int ss{0};
+				  int sn{0};				  
+				  
+				  std::sscanf(yytext, "<route %d %d%n", &size, &m_id, &sn);
+				  ss += sn;
+				  for(int i{0}; i<size; ++i)
+				  {
+				    unsigned int u{0u};
+				    std::sscanf(yytext+ss, "%u%n", &u, &sn);
+				    route.push_back(u);
+				    ss += sn; 				    
+				  }
+				  m_cmd = 101;
+				}
+{INIT}{WS}{WORD}{WS}("c"|"g")	{
+				  std::sscanf(yytext, "<init %s %c>", name, &role);
+				  num = 1;
+				  m_cmd = 0;
+				}
+{INIT}{WS}{WORD}{WS}{INT}{WS}("c"|"g")	{
+				  std::sscanf(yytext, "<init %s %d %c>", name, &num, &role);
+				  if(num >200)
+				  {
+				    m_errnumber = 1;
+				    num = 200;
+				  }
+				  m_cmd = 1;
+				}				
+{INITG}{WS}{WORD}{WS}("c"|"g")	{
+				  std::sscanf(yytext, "<init guided %s %c>", name, &role);
+				  num = 1;
+				  m_guided = true;
+				  m_cmd = 3;
+				}
+{INITG}{WS}{WORD}{WS}{INT}{WS}("c"|"g")	{				  
+				  std::sscanf(yytext, "<init guided %s %d %c>", name, &num, &role);
+				  if(num >200)
+				  {
+				    m_errnumber = 1;
+				    num = 200;
+				  }
+				  m_guided = true;
+				  m_cmd = 2;
+				}								
+.				{;}
+%%
+
+int yyFlexLexer::yylex(){return -1;}            
+          
+          
+           ]]>
+        </programlisting>
+
+      A lényeg, hogy ha a beolvasott stringekben előfordul valamelyik a fent felsorolt kifejezésekben, akkor az azoknak megfelelő
+      kód fog lefutni. A kifejezések az elején vannak definiálta, például a {WS} a whitespace karakter, amely után a csillag, tehát a [ \t]*
+      azt jelenti, hogy bármennyiszer előfordulhat, az INT [0123456789]+ után a + jel pedig azt jelenti, hogy felsorolt számok bármennyiszer és
+      legalább egyszer előfordulhatnak. 
+
+    </para>
+
+  </section>
+
+
+  <section>
+    <title>l334d1c45</title>
+    <para>
+      
+      A l33t nyelvről már volt szó korábban, most Javaban ismét elővesszük és OO környezetben is dolgozunk vele egy kicsit. 
+      Ha már elfelejtettük volna akkor, a leet nyelv egy internetes nyelv vagy ábécé amely különböző ASCII karakterekre cseréli
+      a hagyományos Latin betűket. Maga a szó az elite, azaz az elit szóból ered, amely vonatkozhatott arra, hogy aki megérti ezt
+      a cifra nyelvet az az internet elitjébe tartozott. 
+      
+    </para>
+
+    <para>
+
+      A megoldásom a feladatra a következő:
+
+
+      <programlisting language = "Java">
+          <![CDATA[ 
+          
+          import java.util.Scanner;
+
+
+
+public class Leet {
+
+    private static StringBuilder transform(String input, StringBuilder sb)
+    {
+
+        input=input.toUpperCase();
+        for(int i=0;i<input.length();i++)
+        {
+            switch (input.charAt(i)) {
+                case 'A' : sb.append("4");
+                    break;
+                case 'B' : sb.append("|3");
+                    break;
+                case 'C' : sb.append("(");
+                    break;
+                case 'D' : sb.append("|)");
+                    break;
+                case 'E' : sb.append("3");
+                    break;
+                case 'F' : sb.append("|=");
+                    break;
+                case 'G' : sb.append("6");
+                    break;
+                case 'H' : sb.append("|-|");
+                    break;
+                case 'I' : sb.append("|");
+                    break;
+                case 'J' : sb.append(".]");
+                    break;
+                case 'K' : sb.append("|<");
+                    break;
+                case 'L' : sb.append("1");
+                    break;
+                case 'M' : sb.append("|Y|");
+                    break;
+                case 'N' : sb.append("/V");
+                    break;
+                case 'O' : sb.append("Ø");
+                    break;
+                case 'P' : sb.append("|O");
+                    break;
+                case 'Q' : sb.append("(,)");
+                    break;
+                case 'R' : sb.append("®");
+                    break;
+                case 'S' : sb.append("§");
+                    break;
+                case 'T' : sb.append("7");
+                    break;
+                case 'U' : sb.append("|_|");
+                    break;
+                case 'V' : sb.append("V");
+                    break;
+                case 'W' : sb.append("\\^/");
+                    break;
+                case 'X' : sb.append("Ж");
+                    break;
+                case 'Y' : sb.append("¥");
+                    break;
+                case 'Z' : sb.append("2");
+                    break;
+                case ' ' : sb.append(" ");
+                    break;
+                    default: sb.append(input.charAt(i));
+            }
+
+
+        }
+
+        return sb;
+    }
+
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        Scanner scan = new Scanner(System.in);
+        String input;
+
+        System.out.println("Please enter the text that you want to l33tify");
+        input=scan.nextLine();
+        System.out.println("The 1337 version of your input is: \n");
+
+        sb=transform(input,sb);
+
+        System.out.print(sb);
+        System.out.println("\n");
+
+        }
+
+    }
+
+          
+          
+          
+          ]]>
+        </programlisting>
+      
+      Kicsit egyszerűsítve, az ábécé poolokat és a randomizálást kihagyva, most egy betűnek csak egy leet megfelelője lesz. A program
+      egy text inputot kér a felhasználótól, aminek minden karakterét sorra nézi és az annak megfelelő leet karaktert egy stringbuilder
+      hozzáfűzi a l33t szóhoz. 
+      
+      <figure>
+      <title>Leetify</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../Prog2Chomsky/leet.png" format="PNG" scale="80"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+      
+      
     </para>
 
   </section>
