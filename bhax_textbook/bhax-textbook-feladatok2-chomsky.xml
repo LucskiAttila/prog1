@@ -294,7 +294,7 @@ public class Leet {
                     break;
                 case 'W' : sb.append("\\^/");
                     break;
-                case 'X' : sb.append("Ж");
+                case 'X' : sb.append(" }{");
                     break;
                 case 'Y' : sb.append("¥");
                     break;
